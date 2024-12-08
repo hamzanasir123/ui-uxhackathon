@@ -11,7 +11,7 @@ function Menu() {
       <Navbar/>
 
     <div>
-  <div className="relative h-[310px] md:h-[400px] lg:h-[500px]">
+  <div className="relative h-[310px]">
     <div className="absolute inset-0 bg-[url('/bgimg4.png')] bg-cover bg-center md:bg-top lg:bg-cover"></div>
     <div className="relative">
       <div className="flex justify-center items-center">

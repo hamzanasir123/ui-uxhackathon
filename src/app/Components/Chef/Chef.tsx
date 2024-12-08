@@ -18,7 +18,7 @@ function Chef() {
         <p className="font-bold text-[48px]">
           <span className="text-[#FF9F0D]">Me</span>et Our Chef
         </p>
-        <div className="flex flex-wrap p-10 gap-4 relative">
+        <div className="flex flex-wrap justify-center items-center p-10 gap-4 relative">
           <Image
             src={"/leaf2.png"}
             alt="Food"
