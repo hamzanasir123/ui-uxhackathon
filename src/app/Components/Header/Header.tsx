@@ -44,7 +44,7 @@ function Header() {
                         Menu
                       </Link>
                       <Link
-                        href={"/"}
+                        href={"/Menu"}
                         className=" rounded-lg p-2 font-semibold"
                       >
                         Blog
@@ -62,7 +62,7 @@ function Header() {
                         About
                       </Link>
                       <Link
-                        href={"/"}
+                        href={"/Shop"}
                         className=" rounded-lg p-2 font-semibold"
                       >
                         Shop
@@ -151,7 +151,7 @@ function Header() {
                   Home
                 </Link>
                 <Link
-                  href={"/"}
+                  href={"/Menu"}
                   className="block text-center rounded-lg p-2 font-semibold"
                 >
                   Menu
@@ -175,7 +175,7 @@ function Header() {
                   About
                 </Link>
                 <Link
-                  href={"/"}
+                  href={"/Shop"}
                   className="block text-center rounded-lg p-2 font-semibold"
                 >
                   Shop

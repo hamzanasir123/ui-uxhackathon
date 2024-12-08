@@ -33,8 +33,8 @@ function Footer() {
             </div>
           </div>
         </div>
-
-        <div className='col-span-1 m-8'>
+          <div className='flex gap-4 col-span-2'>
+          <div className='md:m-8'>
           <p className='font-bold mb-4 text-2xl'>Useful Links</p>
           <p className='mb-4'>About</p>
           <p className='mb-4'>News</p>
@@ -44,7 +44,7 @@ function Footer() {
           <p className='mb-4'>Contacts</p>
         </div>
 
-        <div className='col-span-1 m-8'>
+        <div className='md:m-8'>
           <p className='font-bold mb-4 text-2xl'>Help?</p>
           <p className='mb-4'>FAQ</p>
           <p className='mb-4'>Term & Conditions</p>
@@ -53,7 +53,7 @@ function Footer() {
           <p className='mb-4'>Support Policy</p>
           <p className='mb-4'>Privacy</p>
         </div>
-
+          </div>
         <div className='col-span-2 m-8 relative'>
           <p className='font-bold mb-4 text-2xl'>Recent Post</p>
           <div className="grid grid-cols-1 md:grid-cols-5 mb-2">
