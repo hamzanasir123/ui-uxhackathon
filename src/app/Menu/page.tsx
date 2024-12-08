@@ -102,7 +102,7 @@ function Menu() {
 </div>
 
 
-<div className='relative'>
+<div className='relative bg-black'>
     <div className="absolute inset-0 bg-[url('/bgimg2.png')] bg-cover bg-center md:bg-top lg:bg-cover opacity-10"></div>
         <div className='flex flex-wrap justify-center items-center p-24 gap-20'>
                 <div className='flex flex-wrap w-[218px] justify-center items-center'>
