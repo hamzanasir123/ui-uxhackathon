@@ -27,7 +27,7 @@ function page() {
 
 <div className="bg-[#E0E0E0] text-black min-h-screen flex justify-center items-center p-4">
   <div className="w-full max-w-[424px] bg-white rounded shadow-md">
-    <p className="font-bold text-2xl text-black text-center py-10">Sign ip</p>
+    <p className="font-bold text-2xl text-black text-center py-10">Sign in</p>
     <div className="flex flex-col gap-6 items-center px-4">
       <div className="relative w-full">
         <Image src={"/User (1).png"} alt="" height={24} width={24} className="absolute left-4 top-3" />

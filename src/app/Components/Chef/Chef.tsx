@@ -35,7 +35,7 @@ function Chef() {
           />
           <Image src={"/Card 2.png"} alt="Food" width={305} height={320} />
           <Image src={"/Card 3.png"} alt="Food" width={305} height={320} className="hidden md:block" />
-          <Image src={"/Card 4.png"} alt="Food" width={305} height={320}  className="hidden md:block"/>
+          {/* <Image src={"/Card 4.png"} alt="Food" width={305} height={320}  className="hidden md:block"/> */}
         </div>
         <div>
           <Link

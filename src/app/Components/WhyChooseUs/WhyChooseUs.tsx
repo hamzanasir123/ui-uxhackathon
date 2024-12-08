@@ -94,11 +94,6 @@ function WhyChooseUs() {
                 <p className=' font-semibold md:text-xl mt-2 text-sm'>Years Of Experienced</p>
                 <p className=' font-bold text-[40px]'>30+</p>
                 </div>
-                <div className='flex flex-wrap w-[218px] justify-center items-center'>
-                <Image src={"/Group (4).png"} alt='' width={116} height={120} />
-                <p className=' font-semibold md:text-xl mt-2'>Professional Chefs</p>
-                <p className=' font-bold text-[40px]'>420</p>
-                </div>
         </div>
     </div>
     </>

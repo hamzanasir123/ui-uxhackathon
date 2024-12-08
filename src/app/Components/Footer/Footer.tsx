@@ -26,7 +26,7 @@ function Footer() {
             <div className="col-span-1 flex justify-center items-center w-[80px] bg-[#FF9F0D] rounded-[6px] h-[80px]">
               <Image src={"/Cookie.png"} alt='' width={56} height={56}/>
             </div>
-            <div className="col-span-4 md:ml-4 text-sm md:text-base">
+            <div className="col-span-4 md:ml-8 text-sm md:text-base">
               <p>Opening Hours</p>
               <p>Mon - Sat(8.00 - 6.00)</p>
               <p>Sunday - Closed</p>
