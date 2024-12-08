@@ -104,7 +104,7 @@ function Menu() {
 
         <div className='relative bg-black'>
     <div className="absolute inset-0 bg-[url('/bgimg2.png')] bg-cover bg-center md:bg-top lg:bg-cover opacity-50"></div>
-        <div className='relative flex flex-wrap p-24 gap-20'>
+        <div className='relative flex flex-wrap justify-center items-center p-24 gap-20'>
                 <div className='flex flex-wrap w-[218px] justify-center items-center'>
                 <Image src={"/Group (3).png"} alt='' width={116} height={120} />
                 <p className=' font-semibold md:text-xl  mt-2'>Professional Chefs</p>
