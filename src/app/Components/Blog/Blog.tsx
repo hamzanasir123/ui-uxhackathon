@@ -81,7 +81,7 @@ function Blog() {
                 </p>
                 <div className="flex justify-between mt-6 sm:mt-16">
                   <p className="text-white text-sm sm:text-base">Learn More</p>
-                  <Image src={"/icon.png"} alt="icon" width={76} height={20} />
+                  <Image src={"/Icon.png"} alt="icon" width={76} height={20} />
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@ function Blog() {
                 </p>
                 <div className="flex justify-between mt-6 sm:mt-16">
                   <p className="text-white text-sm sm:text-base">Learn More</p>
-                  <Image src={"/icon.png"} alt="icon" width={76} height={20} />
+                  <Image src={"/Icon.png"} alt="icon" width={76} height={20} />
                 </div>
               </div>
             </div>

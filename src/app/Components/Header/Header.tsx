@@ -32,34 +32,22 @@ function Header() {
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center space-x-2">
                       <Link
-                        href={"/"}
+                        href={"/Home"}
                         className=" rounded-lg p-2 font-semibold"
                       >
                         Home
                       </Link>
                       <Link
-                        href={"/"}
+                        href={"/Menu"}
                         className=" rounded-lg p-2 font-semibold"
                       >
                         Menu
                       </Link>
                       <Link
-                        href={"/Menu"}
+                        href={"/"}
                         className=" rounded-lg p-2 font-semibold"
                       >
                         Blog
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Pages
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        About
                       </Link>
                       <Link
                         href={"/Shop"}
@@ -68,10 +56,22 @@ function Header() {
                         Shop
                       </Link>
                       <Link
+                        href={"#AboutUs"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        About
+                      </Link>
+                      <Link
+                        href={"/Signin"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Sign in
+                      </Link>
+                      <Link
                         href={"/"}
                         className=" rounded-lg p-2 font-semibold"
                       >
-                        Contact
+                        Sign Up
                       </Link>
                     </div>
                   </div>
@@ -144,48 +144,48 @@ function Header() {
           {isClick && (
             <div className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link
-                  href={"/"}
-                  className="block  text-center rounded-lg p-2 font-semibold"
-                >
-                  Home
-                </Link>
-                <Link
-                  href={"/Menu"}
-                  className="block text-center rounded-lg p-2 font-semibold"
-                >
-                  Menu
-                </Link>
-                <Link
-                  href={"/"}
-                  className="block text-center rounded-lg p-2 font-semibold"
-                >
-                  Blog
-                </Link>
-                <Link
-                  href={"/"}
-                  className="block text-center rounded-lg p-2 font-semibold"
-                >
-                  Pages
-                </Link>
-                <Link
-                  href={"/"}
-                  className="block text-center rounded-lg p-2 font-semibold"
-                >
-                  About
-                </Link>
-                <Link
-                  href={"/Shop"}
-                  className="block text-center rounded-lg p-2 font-semibold"
-                >
-                  Shop
-                </Link>
-                <Link
-                  href={"/"}
-                  className="block text-center rounded-lg p-2 font-semibold"
-                >
-                  Contact
-                </Link>
+              <Link
+                        href={"/Home"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Home
+                      </Link>
+                      <Link
+                        href={"/Menu"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Menu
+                      </Link>
+                      <Link
+                        href={"/"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Blog
+                      </Link>
+                      <Link
+                        href={"/Shop"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Shop
+                      </Link>
+                      <Link
+                        href={"#AboutUs"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        About
+                      </Link>
+                      <Link
+                        href={"/Signin"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Sign in
+                      </Link>
+                      <Link
+                        href={"/"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Sign Up
+                      </Link>
               </div>
             </div>
           )}

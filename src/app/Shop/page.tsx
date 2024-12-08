@@ -1,170 +1,14 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
+import Navbar from '../Components/Navbar/Navbar';
 
 function Page() {
-    const [isClick, setIsClick] = useState(false);
-
-      const toggleNavbar = () => {
-        setIsClick(!isClick)
-      }
   return (
     <>
     <div className='bg-white'>
-
-         {/* This Is Header For Menu Page  */}
-    
-    <nav className='bg-black'>
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-      <div className="flex items-center justify-between h-16">
-        <div className="flex items-center">
-          <div className="flex">
-          <p className="font-bold text-2xl text-[#FF9F0D]">Food</p>
-          <p className="font-bold text-2xl">tuck</p>
-          </div>
-        </div>
-        <div className="hidden md:block">
-          <div className="ml-4 flex items-center space-x-4">
-          <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Home
-                      </Link>
-                      <Link
-                        href={"/Menu"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Menu
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Blog
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Pages
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        About
-                      </Link>
-                      <Link
-                        href={"/Shop"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Shop
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Contact
-                      </Link>
-                      <Link href={""}>
-                <Image src={"/MagnifyingGlass.png"} className='ml-[200px]' alt='' width={24} height={24}/>
-                </Link>
-                <Link href={""}>
-                <Image src={"/User.png"} alt='' width={24} height={24}/>
-                </Link>
-                <Link href={""}>
-                <Image src={"/Tote.png"} alt='' width={24} height={24}/>
-                </Link>
-
-          </div>
-        </div>
-        <div className="md:hidden flex items-center">
-          <button className='inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white
-          focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
-          onClick={toggleNavbar}> 
-          {isClick ? (
-            <svg  className="h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor" >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"/>
-</svg>
-          ) : (
-            <svg  className="h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16m-7 6h7"/>
-</svg>
-          )}
-          </button>
-        </div>
-      </div>
-    </div>
-    {isClick && (
-      <div className="md:hidden">
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        <Link
-                        href={"/"}
-                        className="block rounded-lg p-2 font-semibold"
-                      >
-                        Home
-                      </Link>
-                      <Link
-                        href={"/Menu"}
-                        className="block rounded-lg p-2 font-semibold"
-                      >
-                        Menu
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className="block rounded-lg p-2 font-semibold"
-                      >
-                        Blog
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className="block rounded-lg p-2 font-semibold"
-                      >
-                        Pages
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className="block rounded-lg p-2 font-semibold"
-                      >
-                        About
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className="block rounded-lg p-2 font-semibold"
-                      >
-                        Shop
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className="block rounded-lg p-2 font-semibold"
-                      >
-                        Contact
-                      </Link>
-        </div>
-      </div>
-    )}
-    </nav>
-    
-    {/* This Is Banner For Menu Page */}
-
+    <Navbar/>
     <div>
   <div className="relative h-[310px] md:h-[300px] lg:h-[300px]">
     <div className="absolute inset-0 bg-[url('/bgimg4.png')] bg-cover bg-center md:bg-top lg:bg-cover"></div>
@@ -186,9 +30,8 @@ function Page() {
 <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 m-5 p-4 text-black">
   {/* Product List */}
   <div className="lg:col-span-3">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-      {/* Product Card */}
-      {[
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+    {[
         { src: "/shop1.png", name: "Fresh Lime", price: "$38.00", oldPrice: "$45.00" },
         { src: "/shop2.png", name: "Chocolate Muffin", price: "$28.00" },
         { src: "/shop3.png", name: "Burger", price: "$21.00", oldPrice: "$45.00" },
@@ -198,21 +41,28 @@ function Page() {
         { src: "/shop7.png", name: "Cheese Butter", price: "$10.00" },
         { src: "/shop8.png", name: "Sandwiches", price: "$25.00" },
         { src: "/shop9.png", name: "Chicken Chup", price: "$12.00" },
-      ].map((item, index) => (
-        <div key={index}>
-          <Image src={item.src} alt={item.name} width={262} height={267} />
-          <p className="font-bold text-lg mt-2">{item.name}</p>
-          <div className="flex items-center gap-2">
-            <p className="text-[#FF9F0D]">{item.price}</p>
-            {item.oldPrice && <p className="line-through text-gray-400">{item.oldPrice}</p>}
+        { src: "/shop1.png", name: "Fresh Lime", price: "$38.00", oldPrice: "$45.00" },
+        { src: "/shop2.png", name: "Chocolate Muffin", price: "$28.00" },
+        { src: "/shop3.png", name: "Burger", price: "$21.00", oldPrice: "$45.00" },
+        { src: "/shop4.png", name: "Country Burger", price: "$45.00" },
+        { src: "/shop1.png", name: "Fresh Lime", price: "$38.00", oldPrice: "$45.00" },
+        { src: "/shop2.png", name: "Chocolate Muffin", price: "$28.00" },
+      ]
+        .map((item, index) => (
+          <div key={index}>
+            <Image src={item.src} alt={item.name} width={262} height={267} />
+            <p className="font-bold text-lg mt-2">{item.name}</p>
+            <div className="flex items-center gap-2">
+              <p className="text-[#FF9F0D]">{item.price}</p>
+              {item.oldPrice && <p className="line-through text-gray-400">{item.oldPrice}</p>}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   </div>
 
   {/* Sidebar */}
-  <div className='hidden md:block'>
+  <div className="hidden lg:block">
     <div className="flex items-center gap-2 m-4">
       <input
         type="text"
@@ -225,24 +75,54 @@ function Page() {
     </div>
     <p className="font-bold ml-4 text-xl">Category</p>
     <div className="flex flex-col ml-4 mt-2 space-y-2">
+      {["Sandwiches", "Burger", "Chicken Chup", "Drink", "Pizza", "Thi", "Non Veg", "Uncategorized"].map(
+        (category, index) => (
+          <label key={index} className="flex items-center gap-2">
+            <input type="checkbox" />
+            <p>{category}</p>
+          </label>
+        )
+      )}
+    </div>
+    <div className="relative h-[286px] w-[248px] mt-6">
+      <div className="absolute inset-0 bg-[url('/bgimg5.png')] bg-cover bg-center opacity-100"></div>
+      <p className="font-bold text-lg relative text-white mx-8 mt-5">Perfect Taste</p>
+      <p className="font-bold text-lg relative text-white mx-8">Classic Restaurant</p>
+      <p className="font-bold text-lg relative text-[#FF9F0D] mt-4 mx-8">45.00$</p>
+      <p className="font-bold text-lg relative mt-28 text-white mx-8">Shop Now</p>
+    </div>
+    <p className="font-bold text-xl mt-6">Filter By Price</p>
+    <p className="w-[243px] h-[5px] bg-[#FF9F0D] mt-2"></p>
+    <div className="space-y-6 mt-4">
       {[
-        "Sandwiches",
-        "Burger",
-        "Chicken Chup",
-        "Drink",
-        "Pizza",
-        "Thi",
-        "Non Veg",
-        "Uncategorized",
-      ].map((category, index) => (
-        <label key={index} className="flex items-center gap-2">
-          <input type="checkbox" />
-          <p>{category}</p>
-        </label>
+        { src: "/Vector (10).png", title: "Pizza", price: "35.00$" },
+        { src: "/Vector (10).png", title: "Cupcake", price: "35.00$" },
+        { src: "/Vector (10).png", title: "Cookies", price: "35.00$" },
+        { src: "/Vector (10).png", title: "Burger", price: "35.00$" },
+      ].map((item, index) => (
+        <div key={index} className="grid grid-cols-[70px_1fr] items-center gap-4">
+          <Image src={item.src} alt={item.title} height={69} width={70} />
+          <div>
+            <p className="font-semibold text-lg">{item.title}</p>
+            <Image src={"/star (1).png"} alt="" width={63} height={9} />
+            <p className="text-[#FF9F0D] text-[16px] font-bold">{item.price}</p>
+          </div>
+        </div>
       ))}
+    </div>
+    <p className="font-bold text-xl mt-6">Product Tags</p>
+    <div className="flex flex-wrap gap-8 text-lg mt-2">
+      {["Services", "Our Menu", "Pizza", "Cupcake", "Burger", "Cookies", "Our Shop", "Tandoori Chicken"].map(
+        (tag, index) => (
+          <p key={index} className={tag === "Burger" ? "text-[#FF9F0D] underline" : ""}>
+            {tag}
+          </p>
+        )
+      )}
     </div>
   </div>
 </div>
+
 
     </div>
     </>
