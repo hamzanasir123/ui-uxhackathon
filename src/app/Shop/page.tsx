@@ -183,173 +183,67 @@ function page() {
   </div>
 </div>
 
-    <div className='grid grid-cols-4 m-10 p-4 text-black'>
-        <div className='col-span-3'>
-            <div className='flex flex-wrap gap-5'>
-                <div>
-                    <Image src={"/shop1.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Fresh Lime</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$38.00</p>
-                        <p className='line-through text-gray-400'>$45.00</p>
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop2.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Chocolate Muffin</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$28.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop3.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Burger</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$21.00</p>
-                        <p className='line-through text-gray-400'>$45.00</p>
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop4.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Country Burger</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$45.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop5.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Drink</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$23.00</p>
-                        <p className='line-through text-gray-400'>$45.00</p>
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop6.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Pizza</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$43.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop7.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Cheese Butter</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$10.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop8.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Sandwiches</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$25.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop9.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Chicken Chup</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$12.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop1.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Fresh Lime</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$38.00</p>
-                        <p className='line-through text-gray-400'>$45.00</p>
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop2.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Chocolate Muffin</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$28.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop3.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Burger</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$21.00</p>
-                        <p className='line-through text-gray-400'>$45.00</p>
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop4.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Country Burger</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$45.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop5.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Drink</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$23.00</p>
-                        <p className='line-through text-gray-400'>$45.00</p>
-                    </div>
-                </div>
-                <div>
-                    <Image src={"/shop6.png"} alt='' width={262} height={267}/>
-                    <p className='font-bold text-lg'>Pizza</p>
-                    <div className='flex gap-2'>
-                        <p className='text-[#FF9F0D]'>$43.00</p>
-                        {/* <p className='line-through'>$45.00</p> */}
-                    </div>
-                </div>
-            </div>
+<div className="grid grid-cols-1 lg:grid-cols-4 gap-4 m-5 p-4 text-black">
+  {/* Product List */}
+  <div className="lg:col-span-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      {/* Product Card */}
+      {[
+        { src: "/shop1.png", name: "Fresh Lime", price: "$38.00", oldPrice: "$45.00" },
+        { src: "/shop2.png", name: "Chocolate Muffin", price: "$28.00" },
+        { src: "/shop3.png", name: "Burger", price: "$21.00", oldPrice: "$45.00" },
+        { src: "/shop4.png", name: "Country Burger", price: "$45.00" },
+        { src: "/shop5.png", name: "Drink", price: "$23.00", oldPrice: "$45.00" },
+        { src: "/shop6.png", name: "Pizza", price: "$43.00" },
+        { src: "/shop7.png", name: "Cheese Butter", price: "$10.00" },
+        { src: "/shop8.png", name: "Sandwiches", price: "$25.00" },
+        { src: "/shop9.png", name: "Chicken Chup", price: "$12.00" },
+      ].map((item, index) => (
+        <div key={index}>
+          <Image src={item.src} alt={item.name} width={262} height={267} />
+          <p className="font-bold text-lg mt-2">{item.name}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-[#FF9F0D]">{item.price}</p>
+            {item.oldPrice && <p className="line-through text-gray-400">{item.oldPrice}</p>}
+          </div>
         </div>
-        <div>
-            <div className='m-4 text-black flex'>
-                <input type='text' placeholder='Search Product' className='p-4 bg-[#FF9F0D] bg-opacity-50 text-black h-[46px]'/>
-                <div className='flex justify-center items-center w-[46px] h-[46px] bg-[#FF9F0D]'>
-                    <Image src={"/Vector (7).png"} alt='' width={20} height={20}/>
-                </div>
-            </div>
-                <p className='font-bold ml-4 text-xl'>Category</p>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Sandwiches</p>
-                </div>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Burger</p>
-                </div>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Chicken Chup</p>
-                </div>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Drink</p>
-                </div>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Pizza</p>
-                </div>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Thi</p>
-                </div>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Non Veg</p>
-                </div>
-                <div className='flex m-4 gap-2'>
-                    <input type='checkbox'/>
-                    <p>Uncategorized</p>
-                </div>
-        </div>
+      ))}
     </div>
+  </div>
+
+  {/* Sidebar */}
+  <div className='hidden md:block'>
+    <div className="flex items-center gap-2 m-4">
+      <input
+        type="text"
+        placeholder="Search Product"
+        className="flex-grow p-2 bg-[#FF9F0D] bg-opacity-50 text-black rounded-l"
+      />
+      <div className="flex justify-center items-center bg-[#FF9F0D] p-3 rounded-r">
+        <Image src="/Vector (7).png" alt="Search Icon" width={20} height={20} />
+      </div>
+    </div>
+    <p className="font-bold ml-4 text-xl">Category</p>
+    <div className="flex flex-col ml-4 mt-2 space-y-2">
+      {[
+        "Sandwiches",
+        "Burger",
+        "Chicken Chup",
+        "Drink",
+        "Pizza",
+        "Thi",
+        "Non Veg",
+        "Uncategorized",
+      ].map((category, index) => (
+        <label key={index} className="flex items-center gap-2">
+          <input type="checkbox" />
+          <p>{category}</p>
+        </label>
+      ))}
+    </div>
+  </div>
+</div>
+
     </div>
     </>
   )
