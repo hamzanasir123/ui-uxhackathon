@@ -102,9 +102,9 @@ function Menu() {
 </div>
 
 
-        <div className='relative bg-black'>
-    <div className="absolute inset-0 bg-[url('/bgimg2.png')] bg-cover bg-center md:bg-top lg:bg-cover opacity-50"></div>
-        <div className='relative flex flex-wrap justify-center items-center p-24 gap-20'>
+<div className='relative'>
+    <div className="absolute inset-0 bg-[url('/bgimg2.png')] bg-cover bg-center md:bg-top lg:bg-cover opacity-10"></div>
+        <div className='flex flex-wrap justify-center items-center p-24 gap-20'>
                 <div className='flex flex-wrap w-[218px] justify-center items-center'>
                 <Image src={"/Group (3).png"} alt='' width={116} height={120} />
                 <p className=' font-semibold md:text-xl  mt-2'>Professional Chefs</p>
@@ -119,11 +119,6 @@ function Menu() {
                 <Image src={"/Group (1).png"} alt='' width={116} height={120} />
                 <p className=' font-semibold md:text-xl mt-2 text-sm'>Years Of Experienced</p>
                 <p className=' font-bold text-[40px]'>30+</p>
-                </div>
-                <div className='flex flex-wrap w-[218px] justify-center items-center'>
-                <Image src={"/Group (4).png"} alt='' width={116} height={120} />
-                <p className=' font-semibold md:text-xl mt-2'>Professional Chefs</p>
-                <p className=' font-bold text-[40px]'>420</p>
                 </div>
         </div>
     </div>
