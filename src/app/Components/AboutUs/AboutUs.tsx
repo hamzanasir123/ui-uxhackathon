@@ -12,7 +12,7 @@ function AboutUs() {
   return (
     <>
       <div id="AboutUs" className="">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 lg:p-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:p-8 lg:p-16">
           <div className="p-6">
             <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px]`}>
               About us

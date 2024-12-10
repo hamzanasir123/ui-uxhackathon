@@ -104,21 +104,21 @@ function Menu() {
 
 <div className='relative bg-black'>
     <div className="absolute inset-0 bg-[url('/bgimg2.png')] bg-cover bg-center md:bg-top lg:bg-cover opacity-10"></div>
-        <div className='flex flex-wrap justify-center items-center p-24 gap-20'>
-                <div className='flex flex-wrap w-[218px] justify-center items-center'>
-                <Image src={"/Group (3).png"} alt='' width={116} height={120} />
-                <p className=' font-semibold md:text-xl  mt-2'>Professional Chefs</p>
-                <p className=' font-bold text-[40px]'>420</p>
+        <div className='flex flex-wrap justify-center items-center md:p-24 md:gap-20 gap-2 p-4'>
+                <div className='md:flex md:flex-wrap text-center md:w-[218px] justify-center items-center'>
+                <Image src={"/Group (3).png"} alt='' width={116} height={120} className='w-[50px] md:w-[116px] ml-6' />
+                <p className=' font-semibold md:text-xl text-xs mt-2'>Professional Chefs</p>
+                <p className=' font-bold md:text-[40px]'>420</p>
                 </div>
-                <div className='flex flex-wrap w-[190px] justify-center items-center'>
-                <Image src={"/Group (2).png"} alt='' width={116} height={120} />
-                <p className=' font-semibold md:text-xl mt-2'>Items Of Food</p>
-                <p className=' font-bold text-[40px]'>320</p>
+                <div className='md:flex md:flex-wrap md:w-[190px] text-center justify-center items-center'>
+                <Image src={"/Group (2).png"} alt='' width={116} height={120} className='w-[50px] md:w-[116px] ml-4'/>
+                <p className=' font-semibold md:text-xl mt-2 text-xs'>Items Of Food</p>
+                <p className=' font-bold md:text-[40px]'>320</p>
                 </div>
-                <div className='flex flex-wrap w-[218px] justify-center items-center'>
-                <Image src={"/Group (1).png"} alt='' width={116} height={120} />
-                <p className=' font-semibold md:text-xl mt-2 text-sm'>Years Of Experienced</p>
-                <p className=' font-bold text-[40px]'>30+</p>
+                <div className='md:flex md:flex-wrap md:w-[218px] justify-center text-center items-center'>
+                <Image src={"/Group (1).png"} alt='' width={116} height={120} className='w-[50px] md:w-[116px] ml-8'/>
+                <p className=' font-semibold md:text-xl mt-2 text-xs'>Years Of Experienced</p>
+                <p className=' font-bold md:text-[40px]'>30+</p>
                 </div>
         </div>
     </div>

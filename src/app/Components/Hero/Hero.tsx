@@ -15,10 +15,10 @@ function Hero() {
       <div className="relative">
         <div className="absolute inset-0 bg-[url('/bgimg.png')] bg-cover bg-center opacity-10"></div>
         <Header />
-        <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
-          <div className="grid grid-cols-12 gap-4 p-6">
+        <div className="relative grid grid-cols-1 lg:grid-cols-2 md:gap-6 md:p-6">
+          <div className="grid grid-cols-12 md:gap-4 md:p-6 p-1">
             <div className="col-span-2 lg:col-span-1 m-1 flex flex-col items-center">
-              <div className="h-[100px] lg:h-[158px] w-[2px] bg-slate-600 mb-5"></div>
+              <div className="h-[50px] lg:h-[158px] w-[2px] bg-slate-600 mb-5"></div>
               <div className="flex flex-col items-center">
                 <Image
                   src={"/f.png"}
@@ -42,15 +42,15 @@ function Hero() {
                   className="my-4"
                 />
               </div>
-              <div className="h-[100px] lg:h-[158px] w-[2px] bg-slate-600 mt-5"></div>
+              <div className="h-[50px] lg:h-[158px] w-[2px] bg-slate-600 mt-5"></div>
             </div>
-            <div className="col-span-10 lg:col-span-9 m-4 text-center lg:text-left">
+            <div className="col-span-10 lg:col-span-9 m-4 md:text-center lg:text-left">
               <p
                 className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px]`}
               >
                 Its Quick & Amusing!
               </p>
-              <p className="font-bold text-[40px] md:text-[50px] lg:text-[60px]">
+              <p className="font-bold text-[30px] md:text-[50px] lg:text-[60px]">
                 <span className="text-[#FF9F0D]">Th</span>e Art of speed food
                 Quality
               </p>
@@ -59,20 +59,20 @@ function Hero() {
                 sed pharetra dictum neque massa congue
               </p>
               <Link
-                href={"/"}
+                href={"/Menu"}
                 className="rounded-[30px] bg-[#FF9F0D] text-white px-4 py-2 md:px-5 md:py-3"
               >
                 See Menu
               </Link>
             </div>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center p-5 md:p-0 items-center">
             <Image
               src={"/Image.png"}
               alt="Pic"
               width={877.8}
               height={670}
-              className="w-full hidden md:block h-auto max-w-[500px] md:max-w-[700px] lg:max-w-full"
+              className="w-full h-auto max-w-[500px] md:max-w-[700px] lg:max-w-full"
             />
           </div>
         </div>

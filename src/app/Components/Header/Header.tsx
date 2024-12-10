@@ -146,43 +146,43 @@ function Header() {
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link
                         href={"/Home"}
-                        className=" rounded-lg p-2 font-semibold"
+                        className="block text-center rounded-lg p-2 font-semibold"
                       >
                         Home
                       </Link>
                       <Link
                         href={"/Menu"}
-                        className=" rounded-lg p-2 font-semibold"
+                        className="block rounded-lg p-2 text-center font-semibold"
                       >
                         Menu
                       </Link>
                       <Link
                         href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
+                        className="block rounded-lg text-center p-2 font-semibold"
                       >
                         Blog
                       </Link>
                       <Link
                         href={"/Shop"}
-                        className=" rounded-lg p-2 font-semibold"
+                        className="block text-center rounded-lg p-2 font-semibold"
                       >
                         Shop
                       </Link>
                       <Link
                         href={"#AboutUs"}
-                        className=" rounded-lg p-2 font-semibold"
+                        className="block rounded-lg text-center p-2 font-semibold"
                       >
                         About
                       </Link>
                       <Link
                         href={"/Signin"}
-                        className=" rounded-lg p-2 font-semibold"
+                        className="block text-center rounded-lg p-2 font-semibold"
                       >
                         Sign in
                       </Link>
                       <Link
                         href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
+                        className="block text-center rounded-lg p-2 font-semibold"
                       >
                         Sign Up
                       </Link>

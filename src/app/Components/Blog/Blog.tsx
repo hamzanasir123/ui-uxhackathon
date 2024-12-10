@@ -12,7 +12,7 @@ function Blog() {
   return (
     <>
       <div>
-        <div className="relative h-[408px] mt-[100px]">
+        <div className="relative md:h-[408px] mt-[100px]">
           <div className="absolute inset-0 bg-[url('/bgimg3.png')] bg-cover bg-center"></div>
           <div className="grid grid-cols-1 sm:grid-cols-2">
             <div></div>
@@ -54,11 +54,11 @@ function Blog() {
           <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px]`}>
             Blog Post
           </p>
-          <p className="font-bold text-[32px] sm:text-[48px]">
+          <p className="font-bold text-[30px] sm:text-[48px]">
             <span className="text-[#FF9F0D]">La</span>test News & Blog
           </p>
           <div className="flex flex-wrap p-6 sm:p-10 gap-8 sm:gap-16 justify-center">
-            <div className="w-full sm:w-[324px] h-[469px] border-2 border-white">
+            <div className="w-full sm:w-[324px] md:h-[469px] border-2 border-white">
               <Image src={"/blogpic1.png"} alt="Blog 1" height={349} width={423} />
               <div className="p-4 text-left">
                 <p className="text-[#FF9F0D]">10 February 2022</p>
@@ -72,7 +72,7 @@ function Blog() {
               </div>
             </div>
 
-            <div className="w-full sm:w-[324px] h-[469px] border-2 border-white">
+            <div className="w-full sm:w-[324px] md:h-[469px] border-2 border-white">
               <Image src={"/blogpic2.png"} alt="Blog 2" height={349} width={423} />
               <div className="p-4 text-left">
                 <p className="text-[#FF9F0D]">10 February 2022</p>
@@ -86,7 +86,7 @@ function Blog() {
               </div>
             </div>
 
-            <div className="w-full sm:w-[324px] h-[469px] border-2 border-white">
+            <div className="w-full sm:w-[324px] md:h-[469px] border-2 border-white">
               <Image src={"/blogpic3.png"} alt="Blog 3" height={349} width={423} />
               <div className="p-4 text-left">
                 <p className="text-[#FF9F0D]">10 February 2022</p>

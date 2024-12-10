@@ -15,7 +15,7 @@ function Chef() {
         <p className={`${greatVibes.className} text-[#FF9F0D] text-[25px]`}>
           Chefs
         </p>
-        <p className="font-bold text-[48px]">
+        <p className="font-bold md:text-[48px] text-[30px]">
           <span className="text-[#FF9F0D]">Me</span>et Our Chef
         </p>
         <div className="flex flex-wrap justify-center items-center p-10 gap-4 relative">
@@ -31,11 +31,11 @@ function Chef() {
             alt="Food"
             width={305}
             height={320}
-            className="relative"
+            className="relative w-[100px] md:w-[305px]"
           />
-          <Image src={"/Card 2.png"} alt="Food" width={305} height={320} />
-          <Image src={"/Card 3.png"} alt="Food" width={305} height={320} className="hidden md:block" />
-          {/* <Image src={"/Card 4.png"} alt="Food" width={305} height={320}  className="hidden md:block"/> */}
+          <Image src={"/Card 2.png"} alt="Food" width={305} height={320} className="w-[100px] md:w-[305px]" />
+          <Image src={"/Card 3.png"} alt="Food" width={305} height={320} className="w-[100px] md:w-[305px]"/>
+          <Image src={"/Card 4.png"} alt="Food" width={305} height={320} className="w-[100px] md:w-[305px]"/>
         </div>
         <div>
           <Link
@@ -49,7 +49,7 @@ function Chef() {
   <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px] lg:text-[30px]`}>
     Testimonials
   </p>
-  <p className="font-bold text-[36px] sm:text-[48px]">What our client are saying</p>
+  <p className="font-bold text-[30px] sm:text-[48px]">What our client are saying</p>
 </div>
 
 <div className="mx-4 sm:mx-16 lg:mx-56 relative">
@@ -59,7 +59,7 @@ function Chef() {
       alt="comma"
       height={133}
       width={114}
-      className="absolute left-[50%] transform -translate-x-[50%]"
+      className="absolute left-[50%] transform -translate-x-[50%] w-[80px] md:w-[114px]"
     />
     <div className="flex justify-center h-[150px] sm:h-[200px] relative items-end">
       <Image src={"/Quotes.png"} alt="comma" height={47} width={47} />
