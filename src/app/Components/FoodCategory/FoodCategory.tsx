@@ -23,28 +23,28 @@ function FoodCategory() {
             alt="Food"
             width={305}
             height={320}
-            className="w-[100px] md:w-[200px] lg:w-[305px] h-auto"
+            className="w-[100px] md:w-[150px] lg:w-[250px] h-auto"
           />
           <Image
             src={"/burger.png"}
             alt="Food"
             width={305}
             height={320}
-            className="w-[100px] md:w-[200px] lg:w-[305px] h-auto"
+            className="w-[100px] md:w-[200px] lg:w-[250px] h-auto"
           />
           <Image
             src={"/pasta.png"}
             alt="Food"
             width={305}
             height={320}
-            className="w-[100px] md:w-[200px] lg:w-[305px] h-auto"
+            className="w-[100px] md:w-[200px] lg:w-[250px] h-auto"
           />
           <Image
             src={"/donut.png"}
             alt="Food"
             width={305}
             height={320}
-            className="w-[100px] md:w-[200px] lg:w-[305px] h-auto relative"
+            className="w-[100px] md:w-[200px] lg:w-[250px] h-auto relative"
           />
           <Image
             src={"/leaf.png"}

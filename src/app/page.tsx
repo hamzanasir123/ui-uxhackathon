@@ -1,31 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import React  from 'react'
+import Banner from "./Components/Banner/Banner";
 import Navbar from "./Components/Navbar/Navbar";
 
-export default function Home() {
+export default function Home(): React.JSX.Element {
   return (
     <>
       <div>
-      <Navbar/>
-    <div>
-  <div className="relative h-[310px] md:h-[300px] lg:h-[300px]">
-    <div className="absolute inset-0 bg-[url('/bgimg4.png')] bg-cover bg-center md:bg-top lg:bg-cover"></div>
-    <div className="relative">
-      <div className="flex justify-center items-center">
-        <p className="font-bold text-[28px] md:text-[38px] lg:text-[48px] mt-12 md:mt-16">Sign up page</p>
-      </div>
-      <div className="flex justify-center items-center gap-2 mt-2 md:mt-4">
-        <Link href={"/"} className="text-sm md:text-base lg:text-lg">
-          Home
-        </Link>
-        {/* <Image src={"/Vector (9).png"} alt="Arrow" width={5} height={10} /> */}
-        <p className="text-[#FF9F0D] text-sm md:text-base lg:text-lg">Sign in</p>
-      </div>
-    </div>
-  </div>
-</div>
-
+        <Navbar/>
+        <Banner pageName="Sign Up"/>
 <div className="bg-[#E0E0E0] text-black min-h-screen flex justify-center items-center p-4">
   <div className="w-full max-w-[424px] bg-white rounded shadow-md">
     <p className="font-bold text-2xl text-black text-center py-10">Sign Up</p>
@@ -47,8 +31,8 @@ export default function Home() {
       <input type="checkbox" />
       <p className="text-sm">Remember me?</p>
     </div>
-    <div className="flex justify-center px-4 mb-6">
-      <button className="w-full max-w-[360px] h-[44px] bg-[#FF9F0D] text-white rounded">Sign Up</button>
+    <div className="flex justify-center px-4 mb-6 ">
+      <Link href={"/Home"} className="w-full text-center p-2 max-w-[360px] h-[44px] bg-[#FF9F0D] text-white rounded">Sign Up</Link>
     </div>
     <div className="text-right px-8 pb-4">
       <p className="text-gray-500 text-sm cursor-pointer">Forgot password?</p>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { Great_Vibes } from "next/font/google";
 import Link from "next/link";
-import Header from "../Header/Header";
+import Header from "../Components/Header/Header";
 
 const greatVibes = Great_Vibes({
   subsets: ["latin"],

@@ -3,32 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link'
 import React  from 'react'
 import Navbar from '../Components/Navbar/Navbar';
+import Banner from '../Components/Banner/Banner';
 
 function Menu() {
   return (
     <>
     <div className='bg-white'>
-      <Navbar/>
-
-    <div>
-  <div className="relative h-[310px]">
-    <div className="absolute inset-0 bg-[url('/bgimg4.png')] bg-cover bg-center md:bg-top lg:bg-cover"></div>
-    <div className="relative">
-      <div className="flex justify-center items-center">
-        <p className="font-bold text-[28px] md:text-[38px] lg:text-[48px] mt-12 md:mt-16">Our Menu</p>
-      </div>
-      <div className="flex justify-center items-center gap-2 mt-2 md:mt-4">
-        <Link href={"/"} className="text-sm md:text-base lg:text-lg">
-          Home
-        </Link>
-        <Image src={"/Vector (9).png"} alt="" width={5} height={10} />
-        <p className="text-[#FF9F0D] text-sm md:text-base lg:text-lg">Menu</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
+      <Navbar />
+      <Banner pageName="Menu"/>
     {/* This is Starter Menu */}
 
     <div className="m-8 md:m-16 lg:m-20 text-black">

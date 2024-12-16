@@ -35,34 +35,34 @@ function Navbar() {
                     Menu
                   </Link>
                   <Link
+                    href={"/Blog"}
+                    className=" rounded-lg p-2 font-semibold"
+                  >
+                    Blog
+                  </Link>
+                  <Link
                     href={"/Shop"}
                     className=" rounded-lg p-2 font-semibold"
                   >
                     Shop
                   </Link>
                   <Link
-                    href={"/"}
+                    href={"/ShopDetails"}
                     className=" rounded-lg p-2 font-semibold"
                   >
-                    Pages
+                    Shop Details
                   </Link>
                   <Link
-                    href={"#AboutUs"}
+                    href={"/ShoppingCart"}
                     className=" rounded-lg p-2 font-semibold"
                   >
-                    About
+                    ShoppingCart
                   </Link>
                   <Link
                     href={"/Signin"}
                     className=" rounded-lg p-2 font-semibold"
                   >
-                    Sign in
-                  </Link>
-                  <Link
-                    href={"/"}
-                    className=" rounded-lg p-2 font-semibold"
-                  >
-                    Sign Up
+                    Sign In
                   </Link>
                   <Link href={""}>
             <Image src={"/MagnifyingGlass.png"} className='ml-[200px]' alt='' width={24} height={24}/>
@@ -125,34 +125,34 @@ function Navbar() {
                     Menu
                   </Link>
                   <Link
+                    href={"/Blog"}
+                    className="block text-center rounded-lg p-2 font-semibold"
+                  >
+                    Blog
+                  </Link>
+                  <Link
                     href={"/Shop"}
                     className="block text-center rounded-lg p-2 font-semibold"
                   >
                     Shop
                   </Link>
                   <Link
-                    href={"/"}
+                    href={"/ShopDetails"}
                     className="block text-center rounded-lg p-2 font-semibold"
                   >
-                    Pages
+                    Shop Details
                   </Link>
                   <Link
-                    href={"#AboutUs"}
+                    href={"/ShoppingCart"}
                     className="block text-center rounded-lg p-2 font-semibold"
                   >
-                    About
+                    ShoppingCart
                   </Link>
                   <Link
                     href={"/Signin"}
                     className="block text-center rounded-lg p-2 font-semibold"
                   >
-                    Sign in
-                  </Link>
-                  <Link
-                    href={"/"}
-                    className="block text-center rounded-lg p-2 font-semibold"
-                  >
-                    Sign Up
+                    Sign In
                   </Link>
     </div>
   </div>

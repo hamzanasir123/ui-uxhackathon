@@ -1,71 +1,80 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from 'next/image';
+import React from 'react';
 
 function Footer() {
   return (
-    <div className='md:h-screen text-center'>
-      <div className='grid grid-cols-1 md:grid-cols-2 m-5 lg:m-20'>
-        <div className='mx-10'>
+    <div className=" text-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 m-5 lg:m-20">
+        <div className="mx-10">
           <p className="font-bold text-[24px] md:text-[32px]">
             <span className="text-[#FF9F0D]">St</span>ill You Need Our Support ?
           </p>
-          <p className="text-sm md:text-base">Dont wait make a smart & logical quote here. Its pretty easy.</p>
+          <p className="text-sm md:text-base">Don't wait, make a smart & logical quote here. It's pretty easy.</p>
         </div>
-        <div className='flex md:mx-10 mt-4 md:mt-0'>
-          <input type='email' placeholder='Enter Your Email...' className='rounded-tl rounded-bl p-4 bg-[#FF9F0D] h-[56px] w-full md:w-[300px]'/>
-          <button className='h-[56px] w-full md:w-[163px] rounded bg-white text-[#FF9F0D] '>Subscribe Now</button>
+        <div className="flex md:mx-10 mt-4 md:mt-0">
+          <input
+            type="email"
+            placeholder="Enter Your Email..."
+            className="rounded-tl rounded-bl p-4 bg-[#FF9F0D] h-[56px] w-full md:w-[300px]"
+          />
+          <button className="h-[56px] w-full md:w-[163px] rounded bg-white text-[#FF9F0D]">
+            Subscribe Now
+          </button>
         </div>
-        <p className='h-[1px] w-full bg-[#FF9F0D] mt-20'></p>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-6 md:gap-10 p-4 md:m-10'>
-        <div className='flex flex-wrap justify-center items-center '>
-        <div className='col-span-2 m-4 '>
-          <p className='mb-4 font-bold text-2xl'>About Us.</p>
-          <p className="text-sm md:text-base text-gray-500">Corporate clients and leisure travelers have been relying on Groundlink for dependable, safe, and professional chauffeured car service in major cities across the world.</p>
-          <div className="grid grid-cols-5 md:my-10 my-5">
-            <div className="col-span-1 flex justify-center items-center md:w-[80px] w-[50px] h-[50px] p-2 bg-[#FF9F0D] rounded-[6px] md:h-[80px]">
-              <Image src={"/Cookie.png"} alt='' width={56} height={56}/>
+      <p className="h-[1px] bg-[#FF9F0D] m-10"></p>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 p-4 md:m-10">
+        <div className="col-span-1">
+          <p className="mb-4 font-bold text-2xl">About Us</p>
+          <p className="text-sm md:text-base text-gray-500">
+            Corporate clients and leisure travelers have been relying on Groundlink for dependable, safe, and professional
+            chauffeured car service in major cities across the world.
+          </p>
+          <div className="grid grid-cols-5 md:grid-cols-5 md:my-10 my-5">
+            <div className="flex justify-center items-center md:ml-5 ml-12 w-[50px] h-[50px] md:w-[70px] md:h-[70px] p-2 bg-[#FF9F0D] rounded-[6px]">
+              <Image src="/Cookie.png" alt="" width={56} height={56} />
             </div>
-            <div className="col-span-4 md:ml-8 text-sm md:text-base">
+            <div className="col-span-4 text-xs md:text-sm">
               <p>Opening Hours</p>
-              <p className='text-gray-500'>Mon - Sat(8.00 - 6.00)</p>
-              <p className='text-gray-500'>Sunday - Closed</p>
+              <p className="text-gray-500">Mon - Sat(8.00 - 6.00)</p>
+              <p className="text-gray-500">Sunday - Closed</p>
             </div>
           </div>
         </div>
-        <div className='md:m-8 col-span-1'>
-          <p className='font-bold mb-4 text-2xl'>Useful Links</p>
-          <p className='mb-4'>About</p>
-          <p className='mb-4'>News</p>
-          <p className='mb-4'>Partners</p>
-          <p className='mb-4'>Team</p>
-          <p className='mb-4'>Menu</p>
-          <p className='mb-4'>Contacts</p>
+        <div className="col-span-1">
+          <p className="font-bold mb-4 text-2xl">Useful Links</p>
+          <p className="mb-4">About</p>
+          <p className="mb-4">News</p>
+          <p className="mb-4">Partners</p>
+          <p className="mb-4">Team</p>
+          <p className="mb-4">Menu</p>
+          <p className="mb-4">Contacts</p>
         </div>
-        <div className='md:m-8 col-span-1'>
-          <p className='font-bold mb-4 text-2xl'>Help?</p>
-          <p className='mb-4'>FAQ</p>
-          <p className='mb-4'>Term & Conditions</p>
-          <p className='mb-4'>Reporting</p>
-          <p className='mb-4'>Documentation</p>
-          <p className='mb-4'>Support Policy</p>
-          <p className='mb-4'>Privacy</p>
+        <div className="col-span-1">
+          <p className="font-bold mb-4 text-2xl">Help?</p>
+          <p className="mb-4">FAQ</p>
+          <p className="mb-4">Terms & Conditions</p>
+          <p className="mb-4">Reporting</p>
+          <p className="mb-4">Documentation</p>
+          <p className="mb-4">Support Policy</p>
+          <p className="mb-4">Privacy</p>
         </div>
-        <div className='col-span-2 m-8 relative'>
-          <p className='font-bold mb-4 text-2xl'>Recent Post</p>
+        <div className="col-span-1">
+          <p className="font-bold mb-4 text-2xl">Recent Posts</p>
           <div className="grid grid-cols-5 mb-2">
             <div className="col-span-1">
-              <Image src={"/fp1.png"} alt="Food" height={69} width={70} />
+              <Image src="/fp1.png" alt="Post" height={69} width={70} />
             </div>
-            <div className="col-span-4  md:ml-4">
+            <div className="col-span-4 md:ml-4 ">
               <p className="font-semibold opacity-30 text-sm md:text-md">20 Feb 2022</p>
               <p>Keep Your Business</p>
             </div>
           </div>
           <div className="grid grid-cols-5 mb-2">
             <div className="col-span-1">
-              <Image src={"/fp2.png"} alt="Food" height={69} width={70} />
+              <Image src="/fp2.png" alt="Post" height={69} width={70} />
             </div>
             <div className="col-span-4 md:ml-4">
               <p className="font-semibold opacity-30 text-sm md:text-md">20 Feb 2022</p>
@@ -74,39 +83,35 @@ function Footer() {
           </div>
           <div className="grid grid-cols-5 mb-2">
             <div className="col-span-1">
-              <Image src={"/fp3.png"} alt="Food" height={69} width={70} />
+              <Image src="/fp3.png" alt="Post" height={69} width={70} />
             </div>
             <div className="col-span-4 md:ml-4">
               <p className="font-semibold opacity-30 text-sm md:text-md">20 Feb 2022</p>
               <p>Keep Your Business</p>
             </div>
           </div>
-          {/* <Image src={"/Rectangle 8925.png"} alt='' width={136} height={194} className='hidden md:block absolute ml-[300px]'/> */}
-        </div>
         </div>
       </div>
 
-      <div className='bg-[#4F4F4F] md:h-[79px] flex justify-between'>
-        <div className='p-6 md:ml-10'>
-          <p className='text-sm md:text-base'>Copyright © 2022 by Ayeman. All Rights Reserved.</p>
-        </div>
-        <div className='flex flex-wrap md:p-6 py-4 md:gap-5 gap-2 relative'>
-          <div className='flex justify-center items-center w-[36px] h-[34px] bg-white rounded'>
-            <Image src={"/fi1.png"} alt='' width={10} height={18}/>
+      <div className="bg-[#4F4F4F] flex flex-wrap gap-6 justify-center md:justify-between items-center py-4 px-6">
+        <p className="text-sm md:text-base">Copyright © 2025 by Hamza Nasir. All Rights Reserved.</p>
+        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-5">
+          <div className="flex justify-center items-center w-[36px] h-[34px] bg-white rounded">
+            <Image src="/fi1.png" alt="" width={10} height={18} />
           </div>
-          <div className='flex justify-center items-center w-[36px] h-[34px] bg-white rounded'>
-            <Image src={"/fi2.png"} alt='' width={16} height={18}/>
+          <div className="flex justify-center items-center w-[36px] h-[34px] bg-white rounded">
+            <Image src="/fi2.png" alt="" width={16} height={18} />
           </div>
-          <div className='flex justify-center items-center w-[36px] h-[34px] bg-white rounded'>
-            <Image src={"/fi3.png"} alt='' width={14} height={18}/>
+          <div className="flex justify-center items-center w-[36px] h-[34px] bg-white rounded">
+            <Image src="/fi3.png" alt="" width={14} height={18} />
           </div>
-          <div className='flex justify-center items-center w-[36px] h-[34px] bg-white rounded'>
-            <Image src={"/fi4.png"} alt='' width={18} height={18}/>
+          <div className="flex justify-center items-center w-[36px] h-[34px] bg-white rounded">
+            <Image src="/fi4.png" alt="" width={18} height={18} />
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

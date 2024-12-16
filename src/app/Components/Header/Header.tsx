@@ -44,7 +44,7 @@ function Header() {
                         Menu
                       </Link>
                       <Link
-                        href={"/"}
+                        href={"/Blog"}
                         className=" rounded-lg p-2 font-semibold"
                       >
                         Blog
@@ -56,22 +56,22 @@ function Header() {
                         Shop
                       </Link>
                       <Link
-                        href={"#AboutUs"}
+                        href={"/ShopDetails"}
                         className=" rounded-lg p-2 font-semibold"
                       >
-                        About
+                        Shop Details
+                      </Link>
+                      <Link
+                        href={"/ShoppingCart"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Shopping Cart
                       </Link>
                       <Link
                         href={"/Signin"}
                         className=" rounded-lg p-2 font-semibold"
                       >
-                        Sign in
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Sign Up
+                        Sign In
                       </Link>
                     </div>
                   </div>
@@ -157,7 +157,7 @@ function Header() {
                         Menu
                       </Link>
                       <Link
-                        href={"/"}
+                        href={"/Blog"}
                         className="block rounded-lg text-center p-2 font-semibold"
                       >
                         Blog
@@ -175,16 +175,16 @@ function Header() {
                         About
                       </Link>
                       <Link
+                        href={"/ShoppingCart"}
+                        className="block text-center rounded-lg p-2 font-semibold"
+                      >
+                        Shopping Cart
+                      </Link>
+                      <Link
                         href={"/Signin"}
                         className="block text-center rounded-lg p-2 font-semibold"
                       >
-                        Sign in
-                      </Link>
-                      <Link
-                        href={"/"}
-                        className="block text-center rounded-lg p-2 font-semibold"
-                      >
-                        Sign Up
+                        Sign In
                       </Link>
               </div>
             </div>
