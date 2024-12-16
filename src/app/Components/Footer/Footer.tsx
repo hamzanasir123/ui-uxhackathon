@@ -9,7 +9,7 @@ function Footer() {
           <p className="font-bold text-[24px] md:text-[32px]">
             <span className="text-[#FF9F0D]">St</span>ill You Need Our Support ?
           </p>
-          <p className="text-sm md:text-base">Don't wait, make a smart & logical quote here. It's pretty easy.</p>
+          <p className="text-sm md:text-base">Dont wait, make a smart & logical quote here. Its pretty easy.</p>
         </div>
         <div className="flex md:mx-10 mt-4 md:mt-0">
           <input

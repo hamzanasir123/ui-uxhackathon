@@ -1,7 +1,6 @@
 "use client"
 import Image from 'next/image';
-import Link from 'next/link'
-import React  from 'react'
+import React  from 'react';
 import Navbar from '../Components/Navbar/Navbar';
 import Banner from '../Components/Banner/Banner';
 
@@ -11,7 +10,6 @@ function Menu() {
     <div className='bg-white'>
       <Navbar />
       <Banner pageName="Menu"/>
-    {/* This is Starter Menu */}
 
     <div className="m-8 md:m-16 lg:m-20 text-black">
   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

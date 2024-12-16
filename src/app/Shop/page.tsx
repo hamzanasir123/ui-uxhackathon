@@ -1,6 +1,5 @@
 "use client"
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 import Navbar from '../Components/Navbar/Navbar';
 import Banner from '../Components/Banner/Banner';
@@ -13,7 +12,6 @@ function Page() {
     <Banner pageName="Shop"/>
 
 <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 m-5 p-4 text-black">
-  {/* Product List */}
   <div className="lg:col-span-3">
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
     {[
