@@ -73,6 +73,12 @@ function Header() {
                       >
                         Sign In
                       </Link>
+                      <Link
+                        href={"/SignUp"}
+                        className=" rounded-lg p-2 font-semibold"
+                      >
+                        Sign Up
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -91,6 +97,7 @@ function Header() {
                     height={24}
                     className="absolute"
                   />
+                  <Link href={"/CheckoutPage"}>
                   <Image
                     src={"/Handbag.png"}
                     alt="Cart"
@@ -98,6 +105,7 @@ function Header() {
                     height={24}
                     className=""
                   />
+                  </Link>
                 </div>
               </div>
               <div className="md:hidden flex items-center">
@@ -185,6 +193,12 @@ function Header() {
                         className="block text-center rounded-lg p-2 font-semibold"
                       >
                         Sign In
+                      </Link>
+                      <Link
+                        href={"/SignUp"}
+                        className="block text-center rounded-lg p-2 font-semibold"
+                      >
+                        Sign Up
                       </Link>
               </div>
             </div>

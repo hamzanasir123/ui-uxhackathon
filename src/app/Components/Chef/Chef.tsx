@@ -39,7 +39,7 @@ function Chef() {
         </div>
         <div>
           <Link
-            href={""}
+            href={"/OurChefs"}
             className=" px-6 py-2 bg-transparent border-2 rounded-full border-[#FF9F0D] "
           >
             See More

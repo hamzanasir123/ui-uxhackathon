@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Banner from "../Components/Banner/Banner";
 import Image from "next/image";
+import Link from "next/link";
 
 function page() {
   return (
@@ -42,7 +43,7 @@ function page() {
                   </p>
                 </div>
                 <button className="p-2 px-3 border-2 border-[#FF9F0D] cursor-pointer text-[#FF9F0D] my-3 rounded-[6px]">
-                  <div className="flex justify-center items-center">
+                  <Link href={"/BlogDetails"} className="flex justify-center items-center">
                     <p>Read more</p>
                     <Image
                       src={"/ArrowLineUpRight.png"}
@@ -50,7 +51,7 @@ function page() {
                       height={18}
                       width={18}
                     />
-                  </div>
+                  </Link>
                 </button>
               </div>
               <div>
@@ -83,7 +84,7 @@ function page() {
                   </p>
                 </div>
                 <button className="p-2 px-3 border-2 border-[#FF9F0D] cursor-pointer text-[#FF9F0D] my-3 rounded-[6px]">
-                  <div className="flex justify-center items-center">
+                  <Link href={"/BlogDetails"} className="flex justify-center items-center">
                     <p>Read more</p>
                     <Image
                       src={"/ArrowLineUpRight.png"}
@@ -91,7 +92,7 @@ function page() {
                       height={18}
                       width={18}
                     />
-                  </div>
+                  </Link>
                 </button>
               </div>
               <div>
@@ -124,7 +125,7 @@ function page() {
                   </p>
                 </div>
                 <button className="p-2 px-3 border-2 border-[#FF9F0D] cursor-pointer text-[#FF9F0D] my-3 rounded-[6px]">
-                  <div className="flex justify-center items-center">
+                  <Link href={"/BlogDetails"} className="flex justify-center items-center">
                     <p>Read more</p>
                     <Image
                       src={"/ArrowLineUpRight.png"}
@@ -132,7 +133,7 @@ function page() {
                       height={18}
                       width={18}
                     />
-                  </div>
+                  </Link>
                 </button>
               </div>
               <div>
@@ -165,7 +166,7 @@ function page() {
                   </p>
                 </div>
                 <button className="p-2 px-3 border-2 border-[#FF9F0D] cursor-pointer text-[#FF9F0D] my-3 rounded-[6px]">
-                  <div className="flex justify-center items-center">
+                  <Link href={"/BlogDetails"} className="flex justify-center items-center">
                     <p>Read more</p>
                     <Image
                       src={"/ArrowLineUpRight.png"}
@@ -173,7 +174,7 @@ function page() {
                       height={18}
                       width={18}
                     />
-                  </div>
+                  </Link>
                 </button>
               </div>
             </div>

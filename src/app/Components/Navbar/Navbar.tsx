@@ -64,13 +64,19 @@ function Navbar() {
                   >
                     Sign In
                   </Link>
+                  <Link
+                    href={"/SignUp"}
+                    className=" rounded-lg p-2 font-semibold"
+                  >
+                    Sign Up
+                  </Link>
                   <Link href={""}>
             <Image src={"/MagnifyingGlass.png"} className='ml-[200px]' alt='' width={24} height={24}/>
             </Link>
             <Link href={""}>
             <Image src={"/User.png"} alt='' width={24} height={24}/>
             </Link>
-            <Link href={""}>
+            <Link href={"?CheckoutPage"}>
             <Image src={"/Tote.png"} alt='' width={24} height={24}/>
             </Link>
 
@@ -153,6 +159,12 @@ function Navbar() {
                     className="block text-center rounded-lg p-2 font-semibold"
                   >
                     Sign In
+                  </Link>
+                  <Link
+                    href={"/SignUp"}
+                    className="block text-center rounded-lg p-2 font-semibold"
+                  >
+                    Sign Up
                   </Link>
     </div>
   </div>

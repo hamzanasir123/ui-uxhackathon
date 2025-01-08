@@ -1,13 +1,44 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+
+interface Product {
+  [x: string]: any;
+  name : string,
+  Descriptioon : string,
+  slug : string,
+  Price : number,
+  image : any,
+}
 
 const greatVibes = Great_Vibes({
   subsets: ["latin"],
   weight: "400",
 });
 
-function Menu() {
+function  Menu() {
+
+  const [apiData, setApiData] = useState<Product[]>([]);
+const [loading, setLoading] = useState(true);
+
+  const query = `*[_type == 'Product']{
+  Price,name,image,Description,
+    'slug': slug.current
+}`;
+
+  useEffect(()=>{
+    const fetching = async () => {
+      setLoading(true);
+      const response = await client.fetch(query);
+      setApiData(response);
+      setLoading(false);
+    }
+    fetching();
+  }, [])
+
   return (
     <div className="my-20 px-4 lg:px-16">
       <div className="text-center mt-16">
@@ -48,40 +79,30 @@ function Menu() {
         </div>
 
         <div className="space-y-6">
-          {[
-            { src: "/m1.png", title: "Lettuce Leaf", price: "12.5$" },
-            { src: "/m2.png", title: "Fresh Breakfast", price: "14.5$" },
-            { src: "/m3.png", title: "Mild Butter", price: "12.5$" },
-            { src: "/m4.png", title: "Fresh Bread", price: "12.5$" },
-          ].map((item, index) => (
+          {apiData.map((item:any, index:any) => (
             <div key={index} className="grid grid-cols-[70px_1fr] items-center gap-4">
-              <Image src={item.src} alt={item.title} height={69} width={70} />
+              <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} />
               <div>
-                <p className="font-semibold text-lg">{item.title}</p>
+                <p className="font-semibold text-lg">{item.name}</p>
                 <p className="text-sm text-gray-500">
-                  Lacus nisi, et ac dapibus velit in consequat.
+                  {item.Description}
                 </p>
-                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.price}</p>
+                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.Price}$</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="hidden md:block space-y-6">
-          {[
-            { src: "/m5.png", title: "Glow Cheese", price: "12.5$" },
-            { src: "/m6.png", title: "Italian Pizza", price: "14.5$" },
-            { src: "/m7.png", title: "Sllice Beef", price: "12.5$" },
-            { src: "/m8.png", title: "Mushaom Pizza", price: "12.5$" },
-          ].map((item, index) => (
+        {apiData.map((item:any, index:any) => (
             <div key={index} className="grid grid-cols-[70px_1fr] items-center gap-4">
-              <Image src={item.src} alt={item.title} height={69} width={70} />
+              <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} />
               <div>
-                <p className="font-semibold text-lg">{item.title}</p>
+                <p className="font-semibold text-lg">{item.name}</p>
                 <p className="text-sm text-gray-500">
-                  Lacus nisi, et ac dapibus velit in consequat.
+                  {item.Description}
                 </p>
-                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.price}</p>
+                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.Price}$</p>
               </div>
             </div>
           ))}
