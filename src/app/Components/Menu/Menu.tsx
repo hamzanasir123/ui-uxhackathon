@@ -22,7 +22,6 @@ const greatVibes = Great_Vibes({
 function  Menu() {
 
   const [apiData, setApiData] = useState<Product[]>([]);
-const [loading, setLoading] = useState(true);
 
   const query = `*[_type == 'Product']{
   Price,name,image,Description,
@@ -31,13 +30,11 @@ const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
     const fetching = async () => {
-      setLoading(true);
       const response = await client.fetch(query);
       setApiData(response);
-      setLoading(false);
     }
     fetching();
-  }, [])
+  }, [query])
 
   return (
     <div className="my-20 px-4 lg:px-16">
@@ -79,7 +76,7 @@ const [loading, setLoading] = useState(true);
         </div>
 
         <div className="space-y-6">
-          {apiData.map((item:any, index:any) => (
+          {apiData.map((item, index) => (
             <div key={index} className="grid grid-cols-[70px_1fr] items-center gap-4">
               <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} />
               <div>
@@ -94,7 +91,7 @@ const [loading, setLoading] = useState(true);
         </div>
 
         <div className="hidden md:block space-y-6">
-        {apiData.map((item:any, index:any) => (
+        {apiData.map((item, index) => (
             <div key={index} className="grid grid-cols-[70px_1fr] items-center gap-4">
               <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} />
               <div>

@@ -1,37 +1,36 @@
 "use client"
-import Image from 'next/image';
 import React from 'react'
 
-interface Type {
-	id : number;
-	name : string;
-	images : string;
-	desc : string;
-	price : number;
-	isVeg : boolean;
-}
+// interface Type {
+// 	id : number;
+// 	name : string;
+// 	images : string;
+// 	desc : string;
+// 	price : number;
+// 	isVeg : boolean;
+// }
 
 const page = async () => {
 
-	const url = 'https://burgers-hub.p.rapidapi.com/burgers';
-	const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '602e8815a7msh639d522990d0a9dp1c567djsn81ac4a3eab43',
-		'x-rapidapi-host': 'burgers-hub.p.rapidapi.com'
-	}
-};
-	const response = await fetch(url, options);
-	const result:Type[] = await response.json();
+// 	const url = 'https://burgers-hub.p.rapidapi.com/burgers';
+// 	const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'x-rapidapi-key': '602e8815a7msh639d522990d0a9dp1c567djsn81ac4a3eab43',
+// 		'x-rapidapi-host': 'burgers-hub.p.rapidapi.com'
+// 	}
+// };
+// 	const response = await fetch(url, options);
+// 	const result:Type[] = await response.json();
 
-	const url1 = 'https://price-tracking-tools.p.rapidapi.com/camelizer/get-prices?asin=B07FZ8S74R&locale=us';
-const options1 = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '602e8815a7msh639d522990d0a9dp1c567djsn81ac4a3eab43',
-		'x-rapidapi-host': 'price-tracking-tools.p.rapidapi.com'
-	}
-};
+// 	const url1 = 'https://price-tracking-tools.p.rapidapi.com/camelizer/get-prices?asin=B07FZ8S74R&locale=us';
+// const options1 = {
+// 	method: 'GET',
+// 	headers: {
+// 		'x-rapidapi-key': '602e8815a7msh639d522990d0a9dp1c567djsn81ac4a3eab43',
+// 		'x-rapidapi-host': 'price-tracking-tools.p.rapidapi.com'
+// 	}
+// };
 
 
 	// const response1 = await fetch(url1, options1);
