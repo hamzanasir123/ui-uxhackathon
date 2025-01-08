@@ -6,12 +6,11 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
 interface Product {
-  [x: string]: any;
   name : string,
-  Descriptioon : string,
+  Description : string,
   slug : string,
   Price : number,
-  image : any,
+  image : string,
 }
 
 const greatVibes = Great_Vibes({
