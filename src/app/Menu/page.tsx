@@ -1,14 +1,82 @@
 "use client"
 import Image from 'next/image';
-import React  from 'react';
+import React, { useEffect, useState }  from 'react';
 import Navbar from '../Components/Navbar/Navbar';
 import Banner from '../Components/Banner/Banner';
+import { client } from '@/sanity/lib/client';
+
+interface CartItem {
+  id: number;
+}
+
+interface Product {
+  name : string,
+  Description : string,
+  slug : string,
+  Price : number,
+  image : string,
+  id :number,
+}
+
 
 function Menu() {
+
+  const [apiData, setApiData] = useState<Product[]>([]);
+  
+    const query = `*[_type == 'Product']{
+    Price,name,Description,id,stock,
+  }`;
+  
+    useEffect(()=>{
+      const fetching = async () => {
+        const response = await client.fetch(query);
+        setApiData(response);
+      }
+      fetching();
+    }, [query])
+
+
+  const [cartData, setCartData] = useState<CartItem | null>(null);
+    const [removeCartData, setRemoveCartData] = useState<number | null>(null);
+    const [cartStorage, setCartStorage] = useState<CartItem[]>([]);
+    const [cartIds, setCartIds] = useState<number[]>([]);
+
+    useEffect(() => {
+      if(typeof window !== 'undefined'){
+        const storedCart = localStorage.getItem("cart");
+        if (storedCart) {
+          const parsedCart = JSON.parse(storedCart) as CartItem[];
+          setCartStorage(parsedCart); 
+          setCartIds(parsedCart.map((item) => item.id));
+           if(storedCart.length === 0){
+          localStorage.removeItem("cart");
+        };
+        };
+      };
+    },[])
+    const addToCart = (item: any) => {
+      setCartData(item);
+      const updatedCartIds = [...cartIds, item.id];
+      setCartIds(updatedCartIds);
+      const updatedCartStorage = [...cartStorage, item];
+      setCartStorage(updatedCartStorage);
+      localStorage.setItem("cart", JSON.stringify(updatedCartStorage));
+      setRemoveCartData(null);
+    };
+    const removeFromCart = (id: any) => {
+      setRemoveCartData(id);
+      const updatedCartIds = cartIds.filter((itemId) => itemId !== id);
+      setCartIds(updatedCartIds);
+      const updatedCartStorage = cartStorage.filter((item) => item.id !== id);
+      setCartStorage(updatedCartStorage);
+      localStorage.setItem("cart", JSON.stringify(updatedCartStorage));
+      setCartData(null);
+    };
+
   return (
     <>
     <div className='bg-white'>
-      <Navbar />
+      <Navbar cartData={cartData} removeCartData={removeCartData} />
       <Banner pageName="Menu"/>
 
     <div className="m-8 md:m-16 lg:m-20 text-black">
@@ -18,30 +86,20 @@ function Menu() {
     </div>
     <div className="lg:col-span-2 lg:m-10">
       <p className="font-bold mb-4 text-2xl md:text-3xl lg:text-[38px]">Starter Menu</p>
-      <div className="flex justify-between">
-        <p className="text-lg md:text-xl font-semibold">Alder Grilled Chinook Salmon</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">32$</p>
-      </div>
-      <p className="text-sm md:text-base">Toasted French bread topped with romano, cheddar</p>
-      <p className="text-sm md:text-base">560 CAL</p>
-      <div className="flex justify-between mt-4">
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">Berries and creme tart</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">43$</p>
-      </div>
-      <p className="text-sm md:text-base">Gorgonzola, ricotta, mozzarella, taleggio</p>
-      <p className="text-sm md:text-base">700 CAL</p>
-      <div className="flex justify-between mt-4">
-        <p className="text-lg md:text-xl font-semibold">Tormentoso Bush Pizza Pintoage</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">14$</p>
-      </div>
-      <p className="text-sm md:text-base">Ground cumin, avocados, peeled and cubed</p>
-      <p className="text-sm md:text-base">1000 CAL</p>
-      <div className="flex justify-between mt-4">
-        <p className="text-lg md:text-xl font-semibold">Spicy Vegan Potato Curry</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">35$</p>
-      </div>
-      <p className="text-sm md:text-base">Spreadable cream cheese, crumbled blue cheese</p>
-      <p className="text-sm md:text-base">560 CAL</p>
+      {apiData.map((item:Product) => (
+        <>
+         <div key={item.id} className="flex justify-between">
+         <p className="text-lg md:text-xl mt-4 font-semibold">{item.name}</p>
+         <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.Price}$</p>
+       </div>
+       <p className="text-sm md:text-base">{item.Description}</p>
+       {cartIds.includes(item.id) ? (
+         <button onClick={() => removeFromCart(item.id)} className='font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1'>Remove</button>
+       ): (
+         <button onClick={() => addToCart(item)} className='font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1'>Buy</button>
+       )}
+         </>
+      ))}
     </div>
   </div>
 </div>

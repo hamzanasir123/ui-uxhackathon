@@ -11,6 +11,14 @@ export const products = defineType({
             type : 'string'
         }),
         defineField({
+          name : 'id',
+          type : 'number'
+      }),
+      defineField({
+        name : 'stock',
+        type : 'number'
+    }),
+        defineField({
             name: 'slug',
             type : 'slug',
             options: {

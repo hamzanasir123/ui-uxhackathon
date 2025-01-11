@@ -1,13 +1,61 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function Navbar() {
+interface CartItem {
+  id: number;
+}
+
+
+function Navbar(props:any) {
     const [isClick, setIsClick] = useState(false);
+    const [cartStorage, setCartStorage] = useState<CartItem[]>([]);
+    const [cartNumber, setCartNumber] = useState(cartStorage.length);
+    const [cartItem, setCartItem] = useState<any[]>(cartStorage);
+
+    useEffect(() => {
+      if (typeof window !== "undefined") {
+        const storedCart = localStorage.getItem("cart");
+        if (storedCart) {
+          const parsedCart = JSON.parse(storedCart) as CartItem[];
+          setCartStorage(parsedCart);
+        }
+      }
+    }, []);
+    useEffect(() => {
+      if (props.cartData) {
+        if (cartNumber) {
+          const localCartItem = cartItem;
+          localCartItem.push(JSON.parse(JSON.stringify(props.cartData)));
+          setCartItem(localCartItem);
+          setCartNumber(cartNumber + 1);
+          localStorage.setItem("cart", JSON.stringify(localCartItem));
+        } else {
+          setCartNumber(cartNumber + 1);
+          setCartItem([props.cartData]);
+          localStorage.setItem("cart", JSON.stringify([props.cartData]));
+        }
+      }
+    }, [props.cartData, props.removeCartData]);
+  
+    useEffect(() => {
+      if (props.removeCartData) {
+        const localCartItem = cartItem.filter((item: any) => {
+          return item.id != props.removeCartData;
+        });
+        setCartItem(localCartItem);
+        setCartNumber(cartNumber - 1);
+        localStorage.setItem("cart", JSON.stringify(localCartItem));
+        if (localCartItem.length == 0) {
+          localStorage.removeItem("cart");
+        }
+      }
+    }, [props.removeCartData, props.cartData]);
+
 
     const toggleNavbar = () => {
-      setIsClick(!isClick);
+      setIsClick((prev) => !prev);
     };
   return (
     <>
@@ -76,8 +124,9 @@ function Navbar() {
             <Link href={""}>
             <Image src={"/User.png"} alt='' width={24} height={24}/>
             </Link>
-            <Link href={"?CheckoutPage"}>
+            <Link href={ cartNumber ? "/ShoppingCart" : "#"} className="flex">
             <Image src={"/Tote.png"} alt='' width={24} height={24}/>
+            ({cartNumber ? cartNumber : 0})
             </Link>
 
       </div>
