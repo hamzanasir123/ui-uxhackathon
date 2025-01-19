@@ -37,7 +37,7 @@ function Navbar(props:any) {
           localStorage.setItem("cart", JSON.stringify([props.cartData]));
         }
       }
-    }, [props.cartData, props.removeCartData]);
+    }, [props.cartData, props.removeCartData, props.cartItem, props.cartNumber]);
   
     useEffect(() => {
       if (props.removeCartData) {
@@ -51,7 +51,7 @@ function Navbar(props:any) {
           localStorage.removeItem("cart");
         }
       }
-    }, [props.removeCartData, props.cartData]);
+    }, [props.removeCartData, props.cartData, props.cartItem, props.cartNumber]);
 
 
     const toggleNavbar = () => {
@@ -124,7 +124,7 @@ function Navbar(props:any) {
             <Link href={""}>
             <Image src={"/User.png"} alt='' width={24} height={24}/>
             </Link>
-            <Link href={ cartNumber ? "/ShoppingCart" : "#"} className="flex">
+            <Link href={ cartNumber ? "/ShoppingCart" : "#"} className="flex ">
             <Image src={"/Tote.png"} alt='' width={24} height={24}/>
             ({cartNumber ? cartNumber : 0})
             </Link>
@@ -198,10 +198,10 @@ function Navbar(props:any) {
                     Shop Details
                   </Link>
                   <Link
-                    href={"/ShoppingCart"}
+                    href={cartNumber ? "/ShoppingCart" : "#"}
                     className="block text-center rounded-lg p-2 font-semibold"
                   >
-                    ShoppingCart
+                    ShoppingCart({cartNumber ? cartNumber : 0})
                   </Link>
                   <Link
                     href={"/Signin"}

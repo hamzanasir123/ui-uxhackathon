@@ -4,13 +4,15 @@ import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
 
 interface Product {
   name : string,
-  Description : string,
-  slug : string,
-  Price : number,
+  description : string,
+  caregory : string,
+  price : number,
   image : string,
+  available : boolean,
 }
 
 const greatVibes = Great_Vibes({
@@ -22,9 +24,9 @@ function  Menu() {
 
   const [apiData, setApiData] = useState<Product[]>([]);
 
-  const query = `*[_type == 'Product']{
-  Price,name,image,Description,
-    'slug': slug.current
+  const query = `*[_type == 'food']{
+  description, price, name, image,
+    category, available
 }`;
 
   useEffect(()=>{
@@ -76,31 +78,35 @@ function  Menu() {
 
         <div className="space-y-6">
           {apiData.map((item, index) => (
-            <div key={index} className="grid grid-cols-[70px_1fr] items-center gap-4">
-              <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} />
+            <Link key={index} href={"/Menu"}>
+            <div className="grid grid-cols-[70px_1fr] my-5 items-center gap-4">
+              <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} className="rounded" />
               <div>
                 <p className="font-semibold text-lg">{item.name}</p>
                 <p className="text-sm text-gray-500">
-                  {item.Description}
+                  {item.description}
                 </p>
-                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.Price}$</p>
+                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.price}$</p>
               </div>
             </div>
+            </Link>
           ))}
         </div>
 
         <div className="hidden md:block space-y-6">
         {apiData.map((item, index) => (
-            <div key={index} className="grid grid-cols-[70px_1fr] items-center gap-4">
-              <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} />
+          <Link key={index} href={"/Menu"}>
+            <div  className="grid grid-cols-[70px_1fr] my-5 items-center gap-4">
+              <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} className="rounded" />
               <div>
                 <p className="font-semibold text-lg">{item.name}</p>
                 <p className="text-sm text-gray-500">
-                  {item.Description}
+                  {item.description}
                 </p>
-                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.Price}$</p>
+                <p className="text-[#FF9F0D] text-[16px] font-bold">{item.price}$</p>
               </div>
             </div>
+            </Link>
           ))}
         </div>
       </div>

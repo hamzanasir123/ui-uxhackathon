@@ -1,29 +1,82 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Banner from "../Components/Banner/Banner";
 import Image from "next/image";
+import Link from "next/link";
 
 interface CartItem {
-  id: number;
   name: string;
-  Description: string;
-  Price: number;
+  description: string;
+  category: string;
+  price: number;
   image: string;
-  slug: string;
+  available: boolean;
+  id: number;
   quantity: number;
 }
 
 function Page() {
   const [cartData, setCartData] = useState<CartItem[]>([]);
+  const [discountCode, setDiscountCode] = useState("");
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [finalAmount, setFinalAmount] = useState(0); // This will hold the final amount after discount
+
+  // Fetch cart data from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        const parsedCart = JSON.parse(storedCart) as CartItem[];
+        parsedCart.forEach(item => {
+          if (item.quantity < 1) item.quantity = 1; // Default to 1 if quantity is invalid
+          if (item.price <= 0) item.price = 0; // Default to 0 if price is invalid
+        });
+        setCartData(parsedCart);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Calculate total amount every time the cartData changes
+    const subtotal = cartData.reduce(
+      (total, item) => {
+        const quantity = item.quantity || 1;
+        return total + item.price * quantity;
+      },
+      0
+    );
+    setTotalAmount(subtotal);
+    setFinalAmount(subtotal);
+  }, [cartData]);
+
+  // Handle discount code input change
+  const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDiscountCode(event.target.value);
+  };
+
+  // Apply discount if the code is valid
+  const handleApplyDiscount = () => {
+    if (discountCode === "HAMZA25") {
+      const discountedAmount = totalAmount * 0.75; // Apply 25% discount
+      setFinalAmount(discountedAmount);
+    } else {
+      setFinalAmount(totalAmount); // If code is not valid, keep the original amount
+    }
+  };
 
   // Function to handle quantity change for a specific item
   const handleQuantityChange = (index: number, newQuantity: number) => {
     if (newQuantity < 1) return; // Prevent quantity from going below 1
-    const updatedCartData = [...cartData];
-    updatedCartData[index].quantity = Number(newQuantity) || 0;
-    setCartData(updatedCartData);
-    localStorage.setItem("cart", JSON.stringify(updatedCartData)); // Update localStorage
+    setCartData((prevCartData) => {
+      const updatedCartData = [...prevCartData];
+      updatedCartData[index] = {
+        ...updatedCartData[index],
+        quantity: newQuantity,
+      };
+      localStorage.setItem("cart", JSON.stringify(updatedCartData)); // Ensure localStorage is updated
+      return updatedCartData;
+    });
   };
 
   // Remove item from cart
@@ -35,19 +88,6 @@ function Page() {
       localStorage.removeItem("cart"); // Clear storage if cart is empty
     }
   };
-
-  // Fetch cart data from localStorage on component mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const storedCart = localStorage.getItem("cart");
-      if (storedCart) {
-        const parsedCart = JSON.parse(storedCart) as CartItem[];
-        console.log("Parsed Cart Data:", parsedCart); 
-        setCartData(parsedCart);
-      }
-    }
-  }, []);
-  
 
   return (
     <>
@@ -62,8 +102,8 @@ function Page() {
                   {/* Product Section */}
                   <div>
                     <p className="font-bold text-lg">Product</p>
-                    <div className="grid grid-cols-2 my-3 gap-3">
-                      <Image src={"/cart2.png"} alt="item" width={93} height={97} />
+                    <div className="grid grid-cols-2 my-3 gap-3 ">
+                      <Image src={"/cart2.png"} alt="item" width={93} height={97} className="hidden" />
                       <div>
                         <p className="font-bold">{item.name}</p>
                         <Image
@@ -78,10 +118,10 @@ function Page() {
                   {/* Price Section */}
                   <div>
                     <p className="font-bold text-lg">Price</p>
-                    <p className="my-6">${item.Price}.00</p>
+                    <p className="my-6">${item.price}.00</p>
                   </div>
                   {/* Quantity Section */}
-                  <div className="hidden md:block">
+                  <div className="">
                     <p className="font-bold text-lg">Quantity</p>
                     <div className="grid grid-cols-3 my-6 border border-gray-400">
                       <button
@@ -102,7 +142,7 @@ function Page() {
                   {/* Total Section */}
                   <div className="hidden md:block">
                     <p className="font-bold text-lg">Total</p>
-                    <p className="my-6">${item.Price * item.quantity || item.Price}.00</p>
+                    <p className="my-6">${item.price * item.quantity || item.price}.00</p>
                   </div>
                   {/* Remove Button */}
                   <button onClick={() => removeFromCart(item.id)}>
@@ -135,16 +175,20 @@ function Page() {
               <div className="md:h-[188px] border-2 border-[#C4C4C4] rounded-[6px] my-6 md:mr-6">
                 <div className="m-6">
                   <p className="text-[#828282]">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque diam pellentesque bibendum non
+                    Apply Code HAMZA25 for 25% Discount.
                   </p>
                   <div className="flex mt-4 border-2">
                     <input
                       type="text"
                       placeholder="Enter Here code"
                       className="p-4 h-[56px] w-full"
+                      value={discountCode}
+                      onChange={handleCodeChange}
                     />
-                    <button className="h-[56px] w-[163px] text-white bg-[#FF9F0D]">
+                    <button
+                      className="h-[56px] w-[163px] text-white bg-[#FF9F0D]"
+                      onClick={handleApplyDiscount}
+                    >
                       Apply
                     </button>
                   </div>
@@ -159,35 +203,27 @@ function Page() {
                   <div className="flex justify-between items-center">
                     <p className="font-bold text-xl">Cart Subtotal</p>
                     <p className="font-bold text-lg">
-                      $
-                      {cartData.reduce(
-                        (total, item) => total + item.Price * item.quantity,
-                        0
-                      )}
-                      .00
+                      ${totalAmount}.00
                     </p>
                   </div>
                   <div className="my-2 flex justify-between items-center">
                     <p className="text-[#4F4F4F]">Shipping Charge</p>
-                    <p className="text-[#4F4F4F]">$00.00</p>
+                    <p className="text-[#4F4F4F]">$6.00</p>
                   </div>
                 </div>
                 <hr />
                 <div className="m-6 flex justify-between items-center">
                   <p className="font-bold text-xl">Total Amount</p>
                   <p className="font-bold text-lg">
-                    $
-                    {cartData.reduce(
-                      (total, item) => total + item.Price * item.quantity,
-                      0
-                    )}
-                    .00
+                    ${finalAmount + 6}.00
                   </p>
                 </div>
               </div>
-              <button className="h-[64px] bg-[#FF9F0D] w-full my-4 text-white">
-                Proceed to Checkout
-              </button>
+              <Link href={"/CheckoutPage"}>
+                <button className="h-[64px] bg-[#FF9F0D] w-full my-4 text-white">
+                  Proceed to Checkout
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,7 +1,21 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+
+interface Chef {
+  name : string,
+  description : string,
+  caregory : string,
+  experience : number,
+  image : string,
+  available : boolean,
+  position : string,
+  specialty : string,
+}
 
 const greatVibes = Great_Vibes({
   subsets: ["latin"],
@@ -9,6 +23,21 @@ const greatVibes = Great_Vibes({
 });
 
 function Chef() {
+  
+    const [apiData, setApiData] = useState<Chef[]>([]);
+  
+    const query = `*[_type == 'chef'][0..3]{
+  name, experience, image, specialty,
+    available, description, position
+}`;
+  
+    useEffect(()=>{
+      const fetching = async () => {
+        const response = await client.fetch(query);
+        setApiData(response);
+      }
+      fetching();
+    }, [query])
   return (
     <>
       <div className="text-center">
@@ -19,23 +48,9 @@ function Chef() {
           <span className="text-[#FF9F0D]">Me</span>et Our Chef
         </p>
         <div className="flex flex-wrap justify-center items-center p-10 gap-4 relative">
-          <Image
-            src={"/leaf2.png"}
-            alt="Food"
-            width={444}
-            height={532}
-            className="absolute"
-          />
-          <Image
-            src={"/Chef card.png"}
-            alt="Food"
-            width={305}
-            height={320}
-            className="relative w-[100px] md:w-[305px]"
-          />
-          <Image src={"/Card 2.png"} alt="Food" width={305} height={320} className="w-[100px] md:w-[305px]" />
-          <Image src={"/Card 3.png"} alt="Food" width={305} height={320} className="w-[100px] md:w-[305px]"/>
-          <Image src={"/Card 4.png"} alt="Food" width={305} height={320} className="w-[100px] md:w-[305px]"/>
+          {apiData.map((item, index) => (
+          <Image key={index} src={urlFor(item.image).url()} alt="Food" width={305} height={320} className="w-[100px] md:w-[305px]"/>
+          ))}
         </div>
         <div>
           <Link

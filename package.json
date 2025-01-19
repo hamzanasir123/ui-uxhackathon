@@ -2,7 +2,9 @@
   "name": "hackathon02",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "import-data": "node scripts/import-data.mjs",
     "dev": "next dev ",
     "build": "next build ",
     "start": "next start",
@@ -11,6 +13,8 @@
   "dependencies": {
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.68.3",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
     "next": "14.2.18",
     "next-sanity": "^9.8.32",
     "react": "^18",

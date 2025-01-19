@@ -1,137 +1,192 @@
-"use client"
-import Image from 'next/image';
-import React, { useEffect, useState }  from 'react';
-import Navbar from '../Components/Navbar/Navbar';
-import Banner from '../Components/Banner/Banner';
-import { client } from '@/sanity/lib/client';
+"use client";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import Navbar from "../Components/Navbar/Navbar";
+import Banner from "../Components/Banner/Banner";
+import { client } from "@/sanity/lib/client";
 
 interface CartItem {
   id: number;
 }
 
 interface Product {
-  name : string,
-  Description : string,
-  slug : string,
-  Price : number,
-  image : string,
-  id :number,
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+  image: string;
+  available: boolean;
+  id: number;
 }
 
-
 function Menu() {
-
   const [apiData, setApiData] = useState<Product[]>([]);
-  
-    const query = `*[_type == 'Product']{
-    Price,name,Description,id,stock,
-  }`;
-  
-    useEffect(()=>{
-      const fetching = async () => {
-        const response = await client.fetch(query);
-        setApiData(response);
-      }
-      fetching();
-    }, [query])
+  const [filteredData, setFilteredData] = useState<Product[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
+  const query = `*[_type == 'food']{
+    description, price, name, image,
+    category, available, id
+  }`;
+
+  useEffect(() => {
+    const fetching = async () => {
+      const response = await client.fetch(query);
+      setApiData(response);
+      setFilteredData(response); // Initialize with all data
+    };
+    fetching();
+  }, [query]);
 
   const [cartData, setCartData] = useState<CartItem | null>(null);
-    const [removeCartData, setRemoveCartData] = useState<number | null>(null);
-    const [cartStorage, setCartStorage] = useState<CartItem[]>([]);
-    const [cartIds, setCartIds] = useState<number[]>([]);
+  const [removeCartData, setRemoveCartData] = useState<number | null>(null);
+  const [cartStorage, setCartStorage] = useState<CartItem[]>([]);
+  const [cartIds, setCartIds] = useState<number[]>([]);
 
-    useEffect(() => {
-      if(typeof window !== 'undefined'){
-        const storedCart = localStorage.getItem("cart");
-        if (storedCart) {
-          const parsedCart = JSON.parse(storedCart) as CartItem[];
-          setCartStorage(parsedCart); 
-          setCartIds(parsedCart.map((item) => item.id));
-           if(storedCart.length === 0){
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        const parsedCart = JSON.parse(storedCart) as CartItem[];
+        setCartStorage(parsedCart);
+        setCartIds(parsedCart.map((item) => item.id));
+        if (storedCart.length === 0) {
           localStorage.removeItem("cart");
-        };
-        };
-      };
-    },[])
-    const addToCart = (item: any) => {
-      setCartData(item);
-      const updatedCartIds = [...cartIds, item.id];
-      setCartIds(updatedCartIds);
-      const updatedCartStorage = [...cartStorage, item];
-      setCartStorage(updatedCartStorage);
-      localStorage.setItem("cart", JSON.stringify(updatedCartStorage));
-      setRemoveCartData(null);
-    };
-    const removeFromCart = (id: any) => {
-      setRemoveCartData(id);
-      const updatedCartIds = cartIds.filter((itemId) => itemId !== id);
-      setCartIds(updatedCartIds);
-      const updatedCartStorage = cartStorage.filter((item) => item.id !== id);
-      setCartStorage(updatedCartStorage);
-      localStorage.setItem("cart", JSON.stringify(updatedCartStorage));
-      setCartData(null);
-    };
+        }
+      }
+    }
+  }, []);
+
+  const addToCart = (item: any) => {
+    setCartData(item);
+    const updatedCartIds = [...cartIds, item.id];
+    setCartIds(updatedCartIds);
+    const updatedCartStorage = [...cartStorage, item];
+    setCartStorage(updatedCartStorage);
+    localStorage.setItem("cart", JSON.stringify(updatedCartStorage));
+    setRemoveCartData(null);
+  };
+
+  const removeFromCart = (id: any) => {
+    setRemoveCartData(id);
+    const updatedCartIds = cartIds.filter((itemId) => itemId !== id);
+    setCartIds(updatedCartIds);
+    const updatedCartStorage = cartStorage.filter((item) => item.id !== id);
+    setCartStorage(updatedCartStorage);
+    localStorage.setItem("cart", JSON.stringify(updatedCartStorage));
+    setCartData(null);
+  };
+
+  // Search functionality
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value.toLowerCase();
+    setSearchTerm(searchValue);
+
+    if (searchValue === "") {
+      setFilteredData(apiData);
+    } else {
+      const filtered = apiData.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchValue) ||
+          item.description.toLowerCase().includes(searchValue)
+      );
+      setFilteredData(filtered);
+    }
+  };
 
   return (
     <>
-    <div className='bg-white'>
-      <Navbar cartData={cartData} removeCartData={removeCartData} />
-      <Banner pageName="Menu"/>
+      <div className="bg-white">
+        <Navbar cartData={cartData} removeCartData={removeCartData} />
+        <Banner pageName="Menu" />
 
-    <div className="m-8 md:m-16 lg:m-20 text-black">
-  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <div className="lg:col-span-1 flex justify-center">
-      <Image src={"/Rectangle 8874.png"} alt="" width={348} height={626} />
-    </div>
-    <div className="lg:col-span-2 lg:m-10">
-      <p className="font-bold mb-4 text-2xl md:text-3xl lg:text-[38px]">Starter Menu</p>
-      {apiData.map((item:Product) => (
-        <>
-         <div key={item.id} className="flex justify-between">
-         <p className="text-lg md:text-xl mt-4 font-semibold">{item.name}</p>
-         <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.Price}$</p>
-       </div>
-       <p className="text-sm md:text-base">{item.Description}</p>
-       {cartIds.includes(item.id) ? (
-         <button onClick={() => removeFromCart(item.id)} className='font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1'>Remove</button>
-       ): (
-         <button onClick={() => addToCart(item)} className='font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1'>Buy</button>
-       )}
-         </>
-      ))}
-    </div>
-  </div>
-</div>
+        {/* Search Bar */}
+        <div className="m-8 md:m-16 lg:m-20 text-black">
+          <div className="mb-8">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={handleSearch}
+              placeholder="Search for food items..."
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-yellow-400"
+            />
+          </div>
 
-<div className="m-8 md:m-16 lg:m-20 text-black">
+          {/* Menu Items */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-1 flex justify-center">
+              <Image src={"/Rectangle 8874.png"} alt="" width={348} height={626} />
+            </div>
+            <div className="lg:col-span-2 lg:m-10">
+              <p className="font-bold mb-4 text-2xl md:text-3xl lg:text-[38px]">Starter Menu</p>
+              {filteredData.length > 0 ? (
+                filteredData.map((item: Product) => (
+                  <div key={item.id}>
+                    <div className="flex justify-between">
+                      <p className="text-lg md:text-xl mt-4 font-semibold">{item.name}</p>
+                      <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
+                    </div>
+                    <p className="text-sm md:text-base">{item.description}</p>
+                    {cartIds.includes(item.id) ? (
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        aria-label={`Remove ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Remove
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(item)}
+                        aria-label={`Add ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Buy
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No items match your search.</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="m-8 md:m-16 lg:m-20 text-black">
   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <div className="lg:col-span-2 lg:m-10">
       <p className="font-bold mb-4 text-2xl md:text-3xl lg:text-[38px]">Main Course</p>
-      <div className="flex justify-between">
-        <p className="text-lg md:text-xl font-semibold">Optic Big Breakfast Combo Menu</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">32$</p>
-      </div>
-      <p className="text-sm md:text-base">Toasted French bread topped with romano, cheddar</p>
-      <p className="text-sm md:text-base">560 CAL</p>
-      <div className="flex justify-between mt-4">
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">Cashew Chicken With Stir-Fry</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">43$</p>
-      </div>
-      <p className="text-sm md:text-base">Gorgonzola, ricotta, mozzarella, taleggio</p>
-      <p className="text-sm md:text-base">700 CAL</p>
-      <div className="flex justify-between mt-4">
-        <p className="text-lg md:text-xl font-semibold">Vegetables & Green Salad</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">14$</p>
-      </div>
-      <p className="text-sm md:text-base">Ground cumin, avocados, peeled and cubed</p>
-      <p className="text-sm md:text-base">1000 CAL</p>
-      <div className="flex justify-between mt-4">
-        <p className="text-lg md:text-xl font-semibold">Spicy Vegan Potato Curry</p>
-        <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">35$</p>
-      </div>
-      <p className="text-sm md:text-base">Spreadable cream cheese, crumbled blue cheese</p>
-      <p className="text-sm md:text-base">560 CAL</p>
+      {filteredData.length > 0 ? (
+                filteredData.map((item: Product) => (
+                  <div key={item.id}>
+                    <div className="flex justify-between">
+                      <p className="text-lg md:text-xl mt-4 font-semibold">{item.name}</p>
+                      <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
+                    </div>
+                    <p className="text-sm md:text-base">{item.description}</p>
+                    {cartIds.includes(item.id) ? (
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        aria-label={`Remove ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Remove
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(item)}
+                        aria-label={`Add ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Buy
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No items match your search.</p>
+              )}
     </div>
     <div className="lg:col-span-1 flex justify-center">
       <Image src={"/burgerwithknife.png"} alt="" width={348} height={626} />
@@ -169,22 +224,37 @@ function Menu() {
     </div>
     <div className="lg:col-span-2">
       <p className="font-bold text-[28px] lg:text-[38px] mb-4">Dessert</p>
-      <div className="space-y-4">
-        {[
-          { name: "Fig and lemon cake", price: "32$", desc: "Toasted French bread topped with romano, cheddar", cal: "560 CAL" },
-          { name: "Creamy mascarpone cake", price: "43$", desc: "Gorgonzola, ricotta, mozzarella, taleggio", cal: "700 CAL" },
-          { name: "Pastry, blueberries, lemon juice", price: "14$", desc: "Ground cumin, avocados, peeled and cubed", cal: "1000 CAL" },
-          { name: "Pain au chocolat", price: "35$", desc: "Spreadable cream cheese, crumbled blue cheese", cal: "560 CAL" },
-        ].map((item, index) => (
-          <div key={index}>
-            <div className="flex justify-between">
-              <p className="text-lg lg:text-xl font-semibold">{item.name}</p>
-              <p className="text-lg lg:text-xl font-semibold text-[#FF9F0D]">{item.price}</p>
-            </div>
-            <p>{item.desc}</p>
-            <p>{item.cal}</p>
-          </div>
-        ))}
+      <div className="">
+      {filteredData.length > 0 ? (
+                filteredData.map((item: Product) => (
+                  <div key={item.id}>
+                    <div className="flex justify-between">
+                      <p className="text-lg md:text-xl mt-4 font-semibold">{item.name}</p>
+                      <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
+                    </div>
+                    <p className="text-sm md:text-base">{item.description}</p>
+                    {cartIds.includes(item.id) ? (
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        aria-label={`Remove ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Remove
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(item)}
+                        aria-label={`Add ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Buy
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No items match your search.</p>
+              )}
       </div>
     </div>
   </div>
@@ -193,22 +263,37 @@ function Menu() {
   <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10">
     <div className="lg:col-span-2">
       <p className="font-bold text-[28px] lg:text-[38px] mb-4">Drinks</p>
-      <div className="space-y-4">
-        {[
-          { name: "Caffè macchiato", price: "32$", desc: "Toasted French bread topped with romano, cheddar", cal: "560 CAL" },
-          { name: "Aperol Spritz Capacianno", price: "43$", desc: "Gorgonzola, ricotta, mozzarella, taleggio", cal: "700 CAL" },
-          { name: "Caffe Latte Campuri", price: "14$", desc: "Ground cumin, avocados, peeled and cubed", cal: "1000 CAL" },
-          { name: "Tormentoso BushTea Pintoage", price: "35$", desc: "Spreadable cream cheese, crumbled blue cheese", cal: "560 CAL" },
-        ].map((item, index) => (
-          <div key={index}>
-            <div className="flex justify-between">
-              <p className="text-lg lg:text-xl font-semibold">{item.name}</p>
-              <p className="text-lg lg:text-xl font-semibold text-[#FF9F0D]">{item.price}</p>
-            </div>
-            <p>{item.desc}</p>
-            <p>{item.cal}</p>
-          </div>
-        ))}
+      <div className="">
+      {filteredData.length > 0 ? (
+                filteredData.map((item: Product) => (
+                  <div key={item.id}>
+                    <div className="flex justify-between">
+                      <p className="text-lg md:text-xl mt-4 font-semibold">{item.name}</p>
+                      <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
+                    </div>
+                    <p className="text-sm md:text-base">{item.description}</p>
+                    {cartIds.includes(item.id) ? (
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        aria-label={`Remove ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Remove
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => addToCart(item)}
+                        aria-label={`Add ${item.name} to cart`}
+                        className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                      >
+                        Buy
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No items match your search.</p>
+              )}
       </div>
     </div>
     <div className="lg:col-span-1 flex justify-center">
@@ -220,7 +305,7 @@ function Menu() {
   <div className="text-center mt-10 text-black">
     <p className="text-lg">Partners & Clients</p>
     <p className="font-bold text-xl lg:text-3xl">We work with the best people</p>
-    <div className="flex flex-wrap justify-center gap-5 lg:gap-10 mt-5">
+    <div className="flex flex-wrap justify-center gap-5 lg:gap-10 my-5">
       {["/image 2.png", "/image 60.png", "/image 56.png", "/image 58.png", "/image 57.png", "/image 59.png"].map(
         (src, index) => (
           <Image key={index} src={src} alt="" width={200} height={100} className='w-[100px]' />
@@ -229,11 +314,9 @@ function Menu() {
     </div>
   </div>
 </div>
-
-
-    </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default Menu
+export default Menu;

@@ -55,8 +55,7 @@ function Hero() {
                 Quality
               </p>
               <p className="my-4 mb-10 text-sm md:text-base lg:text-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius
-                sed pharetra dictum neque massa congue
+                We Have Very Delicious Foods, Fast & Accurate Service And A Premium Quality.
               </p>
               <Link
                 href={"/Menu"}
