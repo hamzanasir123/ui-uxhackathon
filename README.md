@@ -1,3 +1,9 @@
+Here Is a Design And Road Map For This Website You Can Easily See This :
+
+(https://github.com/hamzanasir123/ui-uxhackathon/blob/master/Untitled.pdf)
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
