@@ -11,7 +11,7 @@ function Header() {
   };
   return (
     <>
-      <div className="relative">
+      <div className="relative ">
         <div className=" hidden md:block bg-transparent">
           <div className="flex justify-center bg-transparent items-center">
             <p className="font-bold text-2xl text-[#FF9F0D]">Food</p>

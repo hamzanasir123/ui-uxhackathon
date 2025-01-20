@@ -4,7 +4,7 @@ import Banner from "../Components/Banner/Banner";
 import Image from "next/image";
 import Link from "next/link";
 
-function page() {
+function Page() {
   return (
     <>
       <div className="bg-white">
@@ -372,4 +372,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
