@@ -13,49 +13,72 @@ interface CartItem {
   image: string;
   available: boolean;
   id: number;
-  quantity: number;
+  quantity? : number;
 }
 
 function Page() {
-  const [cartData, setCartData] = useState<CartItem[]>([]);
+  const [cartData, setCartData] = useState<CartItem[]>([]); // Removed quantity from here
+  const [quantityData, setQuantityData] = useState<{ [key: number]: number }>({}); // New state to manage quantities
   const [discountCode, setDiscountCode] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
-  const [finalAmount, setFinalAmount] = useState(0); // This will hold the final amount after discount
+  const [finalAmount, setFinalAmount] = useState(0);
 
-  // Fetch cart data from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCartData(JSON.parse(storedCart));
+      } else {
+        setCartData([]); // Default to an empty array if no cart data exists
+      }
+      if (storedCart) {
+        const parsedCart = JSON.parse(storedCart) as CartItem[];
+        parsedCart.forEach((item) => {
+          if (!quantityData[item.id]) {
+            setQuantityData((prev) => ({ ...prev, [item.id]: 1 })); // Initialize quantity to 1 if not present
+          }
+        });
+        console.log("Cart data after loading from localStorage:", parsedCart);
+        setCartData(parsedCart);
+      }
+    }
+  }, [quantityData]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedCart = localStorage.getItem("cart");
       if (storedCart) {
         const parsedCart = JSON.parse(storedCart) as CartItem[];
-        parsedCart.forEach(item => {
-          if (item.quantity < 1) item.quantity = 1; // Default to 1 if quantity is invalid
-          if (item.price <= 0) item.price = 0; // Default to 0 if price is invalid
-        });
+  
+        // Initialize `quantityData` with saved quantities
+        const savedQuantities = parsedCart.reduce((acc, item) => {
+          acc[item.id] = item.quantity || 1; // Default to 1 if no quantity is saved
+          return acc;
+        }, {} as { [key: number]: number });
+  
         setCartData(parsedCart);
+        setQuantityData(savedQuantities);
       }
     }
   }, []);
-
+  
   useEffect(() => {
-    // Calculate total amount every time the cartData changes
+    // Calculate total amount every time the cartData or quantityData changes
     const subtotal = cartData.reduce(
       (total, item) => {
-        const quantity = item.quantity || 1;
+        const quantity = quantityData[item.id] || 1; // Use the quantity from state
         return total + item.price * quantity;
       },
       0
     );
     setTotalAmount(subtotal);
     setFinalAmount(subtotal);
-  }, [cartData]);
+  }, [cartData, quantityData]);
 
-  // Handle discount code input change
   const handleCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDiscountCode(event.target.value);
   };
 
-  // Apply discount if the code is valid
   const handleApplyDiscount = () => {
     if (discountCode === "HAMZA25") {
       const discountedAmount = totalAmount * 0.75; // Apply 25% discount
@@ -65,29 +88,41 @@ function Page() {
     }
   };
 
-  // Function to handle quantity change for a specific item
-  const handleQuantityChange = (index: number, newQuantity: number) => {
+  const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return; // Prevent quantity from going below 1
-    setCartData((prevCartData) => {
-      const updatedCartData = [...prevCartData];
-      updatedCartData[index] = {
-        ...updatedCartData[index],
-        quantity: newQuantity,
-      };
-      localStorage.setItem("cart", JSON.stringify(updatedCartData)); // Ensure localStorage is updated
-      return updatedCartData;
+  
+    // Update the state
+    setQuantityData((prevQuantityData) => {
+      const updatedQuantityData = { ...prevQuantityData, [id]: newQuantity };
+  
+      // Update `cartData` with the new quantities
+      const updatedCart = cartData.map((item) =>
+        item.id === id ? { ...item, quantity: updatedQuantityData[id] } : item
+      );
+  
+      // Save updated cart to `localStorage`
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+  
+      return updatedQuantityData;
     });
   };
+  
 
-  // Remove item from cart
   const removeFromCart = (id: number) => {
     const updatedCart = cartData.filter((item) => item.id !== id);
     setCartData(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Update localStorage
+    setQuantityData((prev) => {
+      const { [id]: _, ...rest } = prev; // Remove the quantity entry for the removed item
+      return rest;
+    });
+  
+    // Save updated cart to localStorage
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
     if (updatedCart.length === 0) {
       localStorage.removeItem("cart"); // Clear storage if cart is empty
     }
   };
+  
 
   return (
     <>
@@ -97,7 +132,7 @@ function Page() {
         <div className="text-black md:mx-[100px] my-[70px]">
           <div className="md:mx-10 mx-4 my-4">
             {cartData.length > 0 ? (
-              cartData.map((item, index) => (
+              cartData.map((item) => (
                 <div key={item.id} className="flex md:gap-[170px] gap-4">
                   {/* Product Section */}
                   <div>
@@ -125,14 +160,14 @@ function Page() {
                     <p className="font-bold text-lg">Quantity</p>
                     <div className="grid grid-cols-3 my-6 border border-gray-400">
                       <button
-                        onClick={() => handleQuantityChange(index, item.quantity - 1)}
+                        onClick={() => handleQuantityChange(item.id, (quantityData[item.id] || 1) - 1)}
                         className="flex justify-center px-2 items-center border-r border-gray-400"
                       >
                         -
                       </button>
-                      <p className="flex justify-center items-center">{item.quantity || 1}</p>
+                      <p className="flex justify-center items-center">{quantityData[item.id] || 1}</p>
                       <button
-                        onClick={() => handleQuantityChange(index, item.quantity + 1)}
+                        onClick={() => handleQuantityChange(item.id, (quantityData[item.id] || 1) + 1)}
                         className="flex justify-center items-center border-l border-gray-400"
                       >
                         +
@@ -142,7 +177,7 @@ function Page() {
                   {/* Total Section */}
                   <div className="hidden md:block">
                     <p className="font-bold text-lg">Total</p>
-                    <p className="my-6">${item.price * item.quantity || item.price}.00</p>
+                    <p className="my-6">${item.price * (quantityData[item.id] || 1)}.00</p>
                   </div>
                   {/* Remove Button */}
                   <button onClick={() => removeFromCart(item.id)}>
@@ -213,14 +248,12 @@ function Page() {
                 </div>
                 <hr />
                 <div className="m-6 flex justify-between items-center">
-                  <p className="font-bold text-xl">Total Amount</p>
-                  <p className="font-bold text-lg">
-                    ${finalAmount + 6}.00
-                  </p>
+                  <p className="font-bold text-xl">Total</p>
+                  <p className="font-bold text-lg">${finalAmount + 6}.00</p>
                 </div>
               </div>
-              <Link href={"/CheckoutPage"}>
-                <button className="h-[64px] bg-[#FF9F0D] w-full my-4 text-white">
+              <Link href="/CheckoutPage">
+                <button className="bg-[#FF9F0D] text-white p-4 rounded-[6px] w-full mt-6">
                   Proceed to Checkout
                 </button>
               </Link>

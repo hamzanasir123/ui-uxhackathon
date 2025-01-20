@@ -59,9 +59,9 @@ function Payment() {
                   >
                     <div>
                       <p className="font-medium text-lg">{item.name}</p>
-                      <p className="text-gray-500 text-sm">Quantity: {item.quantity}</p>
+                      <p className="text-gray-500 text-sm">Quantity: {item.quantity || 1}</p>
                     </div>
-                    <p className="font-medium text-lg">{item.price * item.quantity}</p>
+                    <p className="font-medium text-lg">{item.price * item.quantity || 1}</p>
                   </div>
                 ))}
 

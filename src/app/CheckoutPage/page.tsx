@@ -21,18 +21,20 @@ function Page() {
 
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-          const storedCart = localStorage.getItem("cart");
-          if (storedCart) {
-            const parsedCart = JSON.parse(storedCart) as CartItem[];
-            parsedCart.forEach(item => {
-                if (item.quantity < 1) item.quantity = 1; // Default to 1 if quantity is invalid
-                if (item.price <= 0) item.price = 0; // Default to 0 if price is invalid
-              });
-            setCartData(parsedCart);
-          }
+      if (typeof window !== "undefined") {
+        const storedCart = localStorage.getItem("cart");
+        if (storedCart) {
+          const parsedCart = JSON.parse(storedCart) as CartItem[];
+          console.log("Parsed Cart Data:", parsedCart);
+          parsedCart.forEach(item => {
+            if (item.quantity < 1 || isNaN(item.quantity)) item.quantity = 1;
+            if (item.price <= 0 || isNaN(item.price)) item.price = 0;
+          });
+          setCartData(parsedCart);
         }
-      }, []);
+      }
+    }, []);
+    
 
   return (
     <>
