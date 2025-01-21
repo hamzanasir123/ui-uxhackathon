@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "import-data": "node scripts/import-data.mjs",
+    "import-data": "node import-data.mjs",
     "dev": "next dev ",
     "build": "next build ",
     "start": "next start",

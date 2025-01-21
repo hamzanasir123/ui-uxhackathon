@@ -17,8 +17,29 @@ interface CartItem {
   }
 
 function Page() {
-    const [cartData, setCartData] = useState<CartItem[]>([]);
-
+      const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>("");
+       const [cartData, setCartData] = useState<CartItem[]>([]);
+    
+       useEffect(() => {
+               if (typeof window !== "undefined") {
+                 const storedCart = localStorage.getItem("cart");
+                 if (storedCart) {
+                   const parsedCart = JSON.parse(storedCart) as CartItem[];
+                   parsedCart.forEach(item => {
+                       if (item.quantity < 1) item.quantity = 1; // Default to 1 if quantity is invalid
+                       if (item.price <= 0) item.price = 0; // Default to 0 if price is invalid
+                     });
+                   setCartData(parsedCart);
+                 }
+               }
+             }, []);
+    
+      const handlePayment = () => {
+        if (!selectedPaymentMethod) {
+          alert("Please select a payment method.");
+          return;
+        }
+      };
 
     useEffect(() => {
       if (typeof window !== "undefined") {
@@ -235,10 +256,50 @@ function Page() {
                 .00
               </p>
             </div>
+             {/* Payment Method Section */}
+             <p className="font-bold text-xl mb-4">Choose a Payment Method</p>
+            <div className="flex flex-wrap justify-start items-center gap-4">
+              {/* Payment Options */}
+              <div
+                onClick={() => setSelectedPaymentMethod("Credit/Debit Card")}
+                className={`p-4 border-2 rounded-lg cursor-pointer ${
+                  selectedPaymentMethod === "Credit/Debit Card"
+                    ? "border-blue-500"
+                    : "border-gray-400"
+                }`}
+              >
+                <p className="font-bold">Credit/Debit Card</p>
+                <p className="text-sm text-gray-500">Visa, MasterCard, etc.</p>
+              </div>
+
+              <div
+                onClick={() => setSelectedPaymentMethod("PayPal")}
+                className={`p-4 border-2 rounded-lg cursor-pointer ${
+                  selectedPaymentMethod === "PayPal"
+                    ? "border-blue-500"
+                    : "border-gray-400"
+                }`}
+              >
+                <p className="font-bold">PayPal</p>
+                <p className="text-sm text-gray-500">Pay securely via PayPal.</p>
+              </div>
+
+              <div
+                onClick={() => setSelectedPaymentMethod("Cash on Delivery")}
+                className={`p-4 border-2 rounded-lg cursor-pointer ${
+                  selectedPaymentMethod === "Cash on Delivery"
+                    ? "border-blue-500"
+                    : "border-gray-400"
+                }`}
+              >
+                <p className="font-bold">Cash on Delivery</p>
+                <p className="text-sm text-gray-500">Pay when you receive the product.</p>
+              </div>
+            </div>
             <div className="flex bg-[#FF9F0D] text-white justify-center items-center py-3 mt-6 mb-5">
-              <Link href={"/Payment"}>
-              <button type="submit" className="w-full">
-                Place An Order
+              <Link href={selectedPaymentMethod ? "/PaymentConfirmation" : ""}>
+              <button onClick={handlePayment} type="submit" className="w-full">
+                Pay
               </button>
               </Link>
             </div>

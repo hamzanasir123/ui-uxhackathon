@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar/Navbar";
 import Banner from "../Components/Banner/Banner";
 import Image from "next/image";
 import Link from "next/link";
+import { urlFor } from "@/sanity/lib/image";
 
 interface CartItem {
   name: string;
@@ -13,12 +14,14 @@ interface CartItem {
   image: string;
   available: boolean;
   id: number;
-  quantity? : number;
+  quantity?: number;
 }
 
 function Page() {
   const [cartData, setCartData] = useState<CartItem[]>([]); // Removed quantity from here
-  const [quantityData, setQuantityData] = useState<{ [key: number]: number }>({}); // New state to manage quantities
+  const [quantityData, setQuantityData] = useState<{ [key: number]: number }>(
+    {}
+  ); // New state to manage quantities
   const [discountCode, setDiscountCode] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
   const [finalAmount, setFinalAmount] = useState(0);
@@ -49,28 +52,28 @@ function Page() {
       const storedCart = localStorage.getItem("cart");
       if (storedCart) {
         const parsedCart = JSON.parse(storedCart) as CartItem[];
-  
+
         // Initialize `quantityData` with saved quantities
-        const savedQuantities = parsedCart.reduce((acc, item) => {
-          acc[item.id] = item.quantity || 1; // Default to 1 if no quantity is saved
-          return acc;
-        }, {} as { [key: number]: number });
-  
+        const savedQuantities = parsedCart.reduce(
+          (acc, item) => {
+            acc[item.id] = item.quantity || 1; // Default to 1 if no quantity is saved
+            return acc;
+          },
+          {} as { [key: number]: number }
+        );
+
         setCartData(parsedCart);
         setQuantityData(savedQuantities);
       }
     }
   }, []);
-  
+
   useEffect(() => {
     // Calculate total amount every time the cartData or quantityData changes
-    const subtotal = cartData.reduce(
-      (total, item) => {
-        const quantity = quantityData[item.id] || 1; // Use the quantity from state
-        return total + item.price * quantity;
-      },
-      0
-    );
+    const subtotal = cartData.reduce((total, item) => {
+      const quantity = quantityData[item.id] || 1; // Use the quantity from state
+      return total + item.price * quantity;
+    }, 0);
     setTotalAmount(subtotal);
     setFinalAmount(subtotal);
   }, [cartData, quantityData]);
@@ -90,23 +93,22 @@ function Page() {
 
   const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return; // Prevent quantity from going below 1
-  
+
     // Update the state
     setQuantityData((prevQuantityData) => {
       const updatedQuantityData = { ...prevQuantityData, [id]: newQuantity };
-  
+
       // Update `cartData` with the new quantities
       const updatedCart = cartData.map((item) =>
         item.id === id ? { ...item, quantity: updatedQuantityData[id] } : item
       );
-  
+
       // Save updated cart to `localStorage`
       localStorage.setItem("cart", JSON.stringify(updatedCart));
-  
+
       return updatedQuantityData;
     });
   };
-  
 
   const removeFromCart = (id: number) => {
     const updatedCart = cartData.filter((item) => item.id !== id);
@@ -115,14 +117,13 @@ function Page() {
       const { [id]: _, ...rest } = prev; // Remove the quantity entry for the removed item
       return rest;
     });
-  
+
     // Save updated cart to localStorage
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     if (updatedCart.length === 0) {
       localStorage.removeItem("cart"); // Clear storage if cart is empty
     }
   };
-  
 
   return (
     <>
@@ -137,13 +138,20 @@ function Page() {
                   {/* Product Section */}
                   <div>
                     <p className="font-bold text-lg">Product</p>
-                    <div className="grid grid-cols-2 my-3 gap-3 ">
-                      <Image src={"/cart2.png"} alt="item" width={93} height={97} className="hidden" />
+                    <div className="grid grid-cols-2 my-3 gap-3">
+                      {/* Dynamic Image */}
+                      <Image
+                        src={urlFor(item.image).url()} // Using dynamic image from the item object
+                        alt={item.name}
+                        width={93}
+                        height={97}
+                        className=""
+                      />
                       <div>
                         <p className="font-bold">{item.name}</p>
                         <Image
-                          src={"/star.png"}
-                          alt="item"
+                          src="/star.png"
+                          alt="rating"
                           width={116}
                           height={20}
                         />
@@ -160,14 +168,26 @@ function Page() {
                     <p className="font-bold text-lg">Quantity</p>
                     <div className="grid grid-cols-3 my-6 border border-gray-400">
                       <button
-                        onClick={() => handleQuantityChange(item.id, (quantityData[item.id] || 1) - 1)}
+                        onClick={() =>
+                          handleQuantityChange(
+                            item.id,
+                            (quantityData[item.id] || 1) - 1
+                          )
+                        }
                         className="flex justify-center px-2 items-center border-r border-gray-400"
                       >
                         -
                       </button>
-                      <p className="flex justify-center items-center">{quantityData[item.id] || 1}</p>
+                      <p className="flex justify-center items-center">
+                        {quantityData[item.id] || 1}
+                      </p>
                       <button
-                        onClick={() => handleQuantityChange(item.id, (quantityData[item.id] || 1) + 1)}
+                        onClick={() =>
+                          handleQuantityChange(
+                            item.id,
+                            (quantityData[item.id] || 1) + 1
+                          )
+                        }
                         className="flex justify-center items-center border-l border-gray-400"
                       >
                         +
@@ -177,15 +197,17 @@ function Page() {
                   {/* Total Section */}
                   <div className="hidden md:block">
                     <p className="font-bold text-lg">Total</p>
-                    <p className="my-6">${item.price * (quantityData[item.id] || 1)}.00</p>
+                    <p className="my-6">
+                      ${item.price * (quantityData[item.id] || 1)}.00
+                    </p>
                   </div>
                   {/* Remove Button */}
                   <button onClick={() => removeFromCart(item.id)}>
                     <div>
                       <p className="font-bold text-lg">Remove</p>
                       <Image
-                        src={"/X.png"}
-                        alt="item"
+                        src="/X.png"
+                        alt="remove"
                         width={20}
                         height={20}
                         className="my-6 ml-6"
@@ -237,9 +259,7 @@ function Page() {
                 <div className="m-6">
                   <div className="flex justify-between items-center">
                     <p className="font-bold text-xl">Cart Subtotal</p>
-                    <p className="font-bold text-lg">
-                      ${totalAmount}.00
-                    </p>
+                    <p className="font-bold text-lg">${totalAmount}.00</p>
                   </div>
                   <div className="my-2 flex justify-between items-center">
                     <p className="text-[#4F4F4F]">Shipping Charge</p>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import Banner from "../Components/Banner/Banner";
 import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 interface CartItem {
   id: number;
@@ -33,10 +34,11 @@ function Menu() {
     const fetching = async () => {
       const response = await client.fetch(query);
       setApiData(response);
-      setFilteredData(response); // Initialize with all data
+      setFilteredData(response); // Set filtered data to match the API response initially
     };
     fetching();
-  }, [query]);
+  }, []);
+  
 
   const [cartData, setCartData] = useState<CartItem | null>(null);
   const [removeCartData, setRemoveCartData] = useState<number | null>(null);
@@ -77,22 +79,26 @@ function Menu() {
     setCartData(null);
   };
 
-  // Search functionality
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value.toLowerCase();
-    setSearchTerm(searchValue);
+// Updated handleSearch function
+const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const searchValue = e.target.value.trim().toLowerCase(); // Trim whitespaces and convert to lowercase
+  setSearchTerm(searchValue);
 
-    if (searchValue === "") {
-      setFilteredData(apiData);
-    } else {
-      const filtered = apiData.filter(
-        (item) =>
-          item.name.toLowerCase().includes(searchValue) ||
-          item.description.toLowerCase().includes(searchValue)
-      );
-      setFilteredData(filtered);
-    }
-  };
+  if (!searchValue) {
+    // Reset to full API data if search is empty
+    setFilteredData(apiData);
+    return;
+  }
+
+  // Filter the API data based on the search term
+  const filtered = apiData.filter((item) => {
+    const name = item.name || ""; // Fallback to empty string
+    const description = item.description || ""; // Fallback to empty string
+    return name.toLowerCase().includes(searchValue) || description.toLowerCase().includes(searchValue);
+  });  
+
+  setFilteredData(filtered); // Update filtered data
+};
 
   return (
     <div className="bg-white">
@@ -116,29 +122,44 @@ function Menu() {
           {filteredData.length > 0 ? (
             filteredData.map((item: Product) => (
               <div key={item.id} className="border p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300 mb-4">
-                <div className="flex justify-between">
-                  <p className="text-lg md:text-xl font-semibold">{item.name}</p>
-                  <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
-                </div>
-                <p className="text-sm md:text-base mb-4">{item.description}</p>
-                {cartIds.includes(item.id) ? (
-                  <button
-                    onClick={() => removeFromCart(item.id)}
-                    aria-label={`Remove ${item.name} from cart`}
-                    className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
-                  >
-                    Remove
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => addToCart(item)}
-                    aria-label={`Add ${item.name} to cart`}
-                    className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
-                  >
-                    Buy
-                  </button>
-                )}
+              {/* Product Image */}
+              <div className="relative w-full h-40 mb-4">
+                <Image
+                  src={urlFor(item.image).url()}
+                  alt={`Image of ${item.name}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-md"
+                />
               </div>
+              
+              {/* Product Details */}
+              <div className="flex justify-between items-center">
+                <p className="text-lg md:text-xl font-semibold">{item.name}</p>
+                <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
+              </div>
+              <p className="text-sm md:text-base mb-4">{item.description}</p>
+              
+              {/* Add/Remove Button */}
+              {cartIds.includes(item.id) ? (
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  aria-label={`Remove ${item.name} from cart`}
+                  className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  onClick={() => addToCart(item)}
+                  aria-label={`Add ${item.name} to cart`}
+                  className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                >
+                  Buy
+                </button>
+              )}
+            </div>
+            
             ))
           ) : (
             <p>No items match your search.</p>
