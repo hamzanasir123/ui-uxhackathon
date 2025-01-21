@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar/Navbar'
 import Banner from '../Components/Banner/Banner'
 import Image from 'next/image'
-import { client } from '@/sanity/lib/client';
-import { urlFor } from '@/sanity/lib/image'
+import client from '../../../client'
+import { urlFor } from '../../../image'
 
 interface Chef {
     name : string,
