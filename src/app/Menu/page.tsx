@@ -33,11 +33,13 @@ function Menu() {
   useEffect(() => {
     const fetching = async () => {
       const response = await client.fetch(query);
+      console.log("Fetched Data:", response); // Add logging to check data
       setApiData(response);
-      setFilteredData(response); // Set filtered data to match the API response initially
+      setFilteredData(response); // Set filtered data initially
     };
     fetching();
   }, []);
+  
   
 
   const [cartData, setCartData] = useState<CartItem | null>(null);
@@ -81,21 +83,19 @@ function Menu() {
 
 // Updated handleSearch function
 const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const searchValue = e.target.value.trim().toLowerCase(); // Trim whitespaces and convert to lowercase
+  const searchValue = e.target.value.trim().toLowerCase();
   setSearchTerm(searchValue);
 
   if (!searchValue) {
-    // Reset to full API data if search is empty
     setFilteredData(apiData);
     return;
   }
 
-  // Filter the API data based on the search term
   const filtered = apiData.filter((item) => {
-    const name = item.name || ""; // Fallback to empty string
-    const description = item.description || ""; // Fallback to empty string
-    return name.toLowerCase().includes(searchValue) || description.toLowerCase().includes(searchValue);
-  });  
+    const name = item.name?.toLowerCase() || "";
+    const description = item.description?.toLowerCase() || "";
+    return name.includes(searchValue) || description.includes(searchValue);
+  });
 
   setFilteredData(filtered); // Update filtered data
 };
