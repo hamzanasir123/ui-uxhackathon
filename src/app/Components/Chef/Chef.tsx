@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
+import client from "../../../../client";
+import { urlFor } from "../../../../image";
 
 interface Chef {
   name : string,

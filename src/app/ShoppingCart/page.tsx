@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar/Navbar";
 import Banner from "../Components/Banner/Banner";
 import Image from "next/image";
 import Link from "next/link";
-import { urlFor } from "@/sanity/lib/image";
+import { urlFor } from "../../../image";
 
 interface CartItem {
   name: string;

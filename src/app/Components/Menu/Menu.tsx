@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
-import { client } from "@/sanity/lib/client";
-import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import client from "../../../../client";
+import { urlFor } from "../../../../image";
 
 interface Product {
   name : string,
@@ -24,18 +24,22 @@ function  Menu() {
 
   const [apiData, setApiData] = useState<Product[]>([]);
 
-  const query = `*[_type == 'food']{
-  description, price, name, image,
-    category, available
-}`;
-
-  useEffect(()=>{
+  useEffect(() => {
     const fetching = async () => {
-      const response = await client.fetch(query);
-      setApiData(response);
-    }
+      try{
+        const query = `*[_type == 'food'][0..3]{
+  name, description , price, id,
+    image, 
+}`;
+        const response = await client.fetch(query);
+        console.log("Fetched Data:", response); // Add logging to check data
+        setApiData(response);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
     fetching();
-  }, [query])
+  }, []);
 
   return (
     <div className="my-20 px-4 lg:px-16">
@@ -84,7 +88,7 @@ function  Menu() {
               <div>
                 <p className="font-semibold text-lg">{item.name}</p>
                 <p className="text-sm text-gray-500">
-                  {item.description}
+                  {item.description.slice(0, 36)}...
                 </p>
                 <p className="text-[#FF9F0D] text-[16px] font-bold">{item.price}$</p>
               </div>
@@ -101,7 +105,7 @@ function  Menu() {
               <div>
                 <p className="font-semibold text-lg">{item.name}</p>
                 <p className="text-sm text-gray-500">
-                  {item.description}
+                  {item.description.slice(0, 36)}...
                 </p>
                 <p className="text-[#FF9F0D] text-[16px] font-bold">{item.price}$</p>
               </div>
