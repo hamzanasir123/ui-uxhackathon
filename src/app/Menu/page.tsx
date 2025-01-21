@@ -162,7 +162,47 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
             
             ))
           ) : (
-            <p>No items match your search.</p>
+            filteredData.map((item: Product) => (
+              <div key={item.id} className="border p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300 mb-4">
+              {/* Product Image */}
+              <div className="relative w-full h-40 mb-4">
+                <Image
+                  src={urlFor(item.image).url()}
+                  alt={`Image of ${item.name}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-md"
+                />
+              </div>
+              
+              {/* Product Details */}
+              <div className="flex justify-between items-center">
+                <p className="text-lg md:text-xl font-semibold">{item.name}</p>
+                <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
+              </div>
+              <p className="text-sm md:text-base mb-4">{item.description}</p>
+              
+              {/* Add/Remove Button */}
+              {cartIds.includes(item.id) ? (
+                <button
+                  onClick={() => removeFromCart(item.id)}
+                  aria-label={`Remove ${item.name} from cart`}
+                  className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  onClick={() => addToCart(item)}
+                  aria-label={`Add ${item.name} to cart`}
+                  className="font-semibold text-xs rounded-full bg-yellow-300 px-3 py-1"
+                >
+                  Buy
+                </button>
+              )}
+            </div>
+            
+            ))
           )}
         </div>
       </div>
