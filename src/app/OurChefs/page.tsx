@@ -45,27 +45,27 @@ function Page() {
                     <div>
                     <div className='flex gap-2'>
                         <p className='font-bold'>Name :</p>
-                        <p>{item.name}</p>
+                        <p>{item.name} ,</p>
                     </div>
                     <div className='flex gap-2'>
                         <p className='font-bold'>Specialty :</p>
-                        <p>{item.specialty}</p>
+                        <p>{item.specialty} ,</p>
                     </div>
                     <div className='flex gap-2'>
                         <p className='font-bold'>Experience :</p>
-                        <p>{item.experience}</p>
+                        <p>{item.experience} years,</p>
                     </div>
                     <div className='flex gap-2'>
                         <p className='font-bold'>Position :</p>
-                        <p>{item.position}</p>
+                        <p>{item.position} ,</p>
                     </div>
                     <div className='flex gap-2'>
                         <p className='font-bold'>Available :</p>
-                        <p>{item.available}</p>
+                        <p>YES ,</p>
                     </div>
                     <div className='gap-2 text-left'>
                         <p className='font-bold'>Description :</p>
-                        <p>{item.description}</p>
+                        <p>{item.description} ,</p>
                     </div>
                     </div>
                 </div>

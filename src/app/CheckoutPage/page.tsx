@@ -73,6 +73,7 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -80,6 +81,7 @@ function Page() {
             <input
               type="email"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -87,6 +89,7 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -94,6 +97,7 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -101,14 +105,15 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <p className="text-2xl font-bold">Billing Address</p>
           <div className="flex items-center gap-2 my-2">
-            <input type="checkbox" />
+            <input type="checkbox" required />
             <p>Same As Shipping Address</p>
           </div>
-          <div className="flex justify-center items-center my-3 border-2 py-3">
+          <div className="flex justify-center items-center my-3 border-2 py-3 hover:bg-[#FF9F0D] hover:text-white ">
             <Link href="/ShoppingCart">Back To Cart</Link>
           </div>
         </div>
@@ -121,6 +126,7 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -128,6 +134,7 @@ function Page() {
             <input
               type="number"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -135,6 +142,7 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -142,6 +150,7 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
           </div>
           <div className="flex flex-wrap justify-start items-center my-2">
@@ -149,14 +158,8 @@ function Page() {
             <input
               type="text"
               className="pl-2 h-[56px] w-full md:w-[424px] border-2"
+              required
             />
-          </div>
-          <div className="md:flex hidden bg-[#FF9F0D] text-white justify-center items-center py-3 mt-6">
-            <Link href={"/Payment"}>
-            <button type="submit" className="w-full md:w-auto px-6">
-              Proceed To Shipping
-            </button>
-            </Link>
           </div>
         </div>
 
