@@ -145,7 +145,7 @@ function Page() {
                         alt={item.name}
                         width={93}
                         height={97}
-                        className=""
+                        className="hidden md:block"
                       />
                       <div>
                         <p className="font-bold">{item.name}</p>
@@ -203,7 +203,7 @@ function Page() {
                   </div>
                   {/* Remove Button */}
                   <button onClick={() => removeFromCart(item.id)}>
-                    <div>
+                    <div >
                       <p className="font-bold text-lg">Remove</p>
                       <Image
                         src="/X.png"
@@ -273,7 +273,7 @@ function Page() {
                 </div>
               </div>
               <Link href="/CheckoutPage">
-                <button className="bg-[#FF9F0D] text-white p-4 rounded-[6px] w-full mt-6">
+                <button className="bg-[#FF9F0D] text-white p-4 rounded-[6px] w-full my-6">
                   Proceed to Checkout
                 </button>
               </Link>
