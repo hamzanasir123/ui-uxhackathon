@@ -56,28 +56,10 @@ function Header() {
                         Shop
                       </Link>
                       <Link
-                        href={"/ShopDetails"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Shop Details
-                      </Link>
-                      <Link
                         href={"/ShoppingCart"}
                         className=" rounded-lg p-2 font-semibold"
                       >
                         Shopping Cart
-                      </Link>
-                      <Link
-                        href={"/Signin"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Sign In
-                      </Link>
-                      <Link
-                        href={"/SignUp"}
-                        className=" rounded-lg p-2 font-semibold"
-                      >
-                        Sign Up
                       </Link>
                     </div>
                   </div>
@@ -187,18 +169,6 @@ function Header() {
                         className="block text-center rounded-lg p-2 font-semibold"
                       >
                         Shopping Cart
-                      </Link>
-                      <Link
-                        href={"/Signin"}
-                        className="block text-center rounded-lg p-2 font-semibold"
-                      >
-                        Sign In
-                      </Link>
-                      <Link
-                        href={"/SignUp"}
-                        className="block text-center rounded-lg p-2 font-semibold"
-                      >
-                        Sign Up
                       </Link>
               </div>
             </div>

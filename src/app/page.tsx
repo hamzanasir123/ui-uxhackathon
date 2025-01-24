@@ -1,25 +1,13 @@
-import React from 'react'
-import AboutUs from './Components/AboutUs/AboutUs'
-import FoodCategory from './Components/FoodCategory/FoodCategory'
-import WhyChooseUs from './Components/WhyChooseUs/WhyChooseUs'
-import Menu from './Components/Menu/Menu'
-import Chef from './Components/Chef/Chef'
-import Blog from './Components/Blog/Blog'
-import Hero from './Hero/Hero'
+import React from "react";
+import Form from "./Components/Form/Form";
 
 
-function page() {
+export default function Home(): React.JSX.Element {
   return (
     <>
-    <Hero/>
-      <AboutUs/>
-      <FoodCategory/>
-      <WhyChooseUs/>
-      <Menu/>
-      <Chef/>
-      <Blog/>
+      <div>
+        <Form btnTitle="SignUp" apiUrl="http://localhost:3000/api/auth/signup"/>
+      </div>
     </>
-  )
+  );
 }
-
-export default page

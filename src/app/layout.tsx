@@ -1,4 +1,5 @@
-
+'use client'
+import { usePathname } from "next/navigation";
 import Footer from "./Components/Footer/Footer";
 import "./globals.css";
 
@@ -7,6 +8,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathName = usePathname();
+  const isPageMain = pathName === "/";
   return (
     <html lang="en">
       <head>
@@ -17,7 +20,7 @@ export default function RootLayout({
       </head>
       <body className="bg-black text-white">
         {children}
-        <Footer />
+        {!isPageMain && <Footer/>}
       </body>
     </html>
   );

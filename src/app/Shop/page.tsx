@@ -148,7 +148,7 @@ function Page() {
                 className="mt-4 bg-[#FF9F0D] p-2 rounded-md"
                 onClick={() => addToWishlist(item)}
               >
-                Add to Wishlist
+               {wishlist.includes(item) ? "Remove" : "Add To wishlist"}
               </button>
             </div>
           ))}

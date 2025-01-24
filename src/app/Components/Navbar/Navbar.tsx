@@ -37,7 +37,7 @@ function Navbar(props:any) {
           localStorage.setItem("cart", JSON.stringify([props.cartData]));
         }
       }
-    }, [props.cartData, props.removeCartData, props.cartItem, props.cartNumber]);
+    }, [props.cartData, props.removeCartData, props.cartItem, props.cartNumber, cartItem, cartNumber]);
   
     useEffect(() => {
       if (props.removeCartData) {
@@ -51,7 +51,7 @@ function Navbar(props:any) {
           localStorage.removeItem("cart");
         }
       }
-    }, [props.removeCartData, props.cartData, props.cartItem, props.cartNumber]);
+    }, [props.removeCartData, props.cartData, props.cartItem, props.cartNumber , cartItem , cartNumber]);
 
 
     const toggleNavbar = () => {
@@ -69,7 +69,7 @@ function Navbar(props:any) {
       </div>
     </div>
     <div className="hidden md:block">
-      <div className="ml-4 flex items-center space-x-4">
+      <div className=" flex items-center space-x-4">
       <Link
                     href={"/Home"}
                     className=" rounded-lg p-2 font-semibold"
@@ -95,28 +95,10 @@ function Navbar(props:any) {
                     Shop
                   </Link>
                   <Link
-                    href={"/ShopDetails"}
-                    className=" rounded-lg p-2 font-semibold"
-                  >
-                    Shop Details
-                  </Link>
-                  <Link
                     href={"/ShoppingCart"}
                     className=" rounded-lg p-2 font-semibold"
                   >
                     ShoppingCart
-                  </Link>
-                  <Link
-                    href={"/Signin"}
-                    className=" rounded-lg p-2 font-semibold"
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    href={"/SignUp"}
-                    className=" rounded-lg p-2 font-semibold"
-                  >
-                    Sign Up
                   </Link>
                   <Link href={""}>
             <Image src={"/MagnifyingGlass.png"} className='ml-[200px]' alt='' width={24} height={24}/>
@@ -192,28 +174,10 @@ function Navbar(props:any) {
                     Shop
                   </Link>
                   <Link
-                    href={"/ShopDetails"}
-                    className="block text-center rounded-lg p-2 font-semibold"
-                  >
-                    Shop Details
-                  </Link>
-                  <Link
                     href={cartNumber ? "/ShoppingCart" : "#"}
                     className="block text-center rounded-lg p-2 font-semibold"
                   >
                     ShoppingCart({cartNumber ? cartNumber : 0})
-                  </Link>
-                  <Link
-                    href={"/Signin"}
-                    className="block text-center rounded-lg p-2 font-semibold"
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    href={"/SignUp"}
-                    className="block text-center rounded-lg p-2 font-semibold"
-                  >
-                    Sign Up
                   </Link>
     </div>
   </div>

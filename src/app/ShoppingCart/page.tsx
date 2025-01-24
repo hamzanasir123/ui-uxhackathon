@@ -141,7 +141,7 @@ function Page() {
                     <div className="grid grid-cols-2 my-3 gap-3">
                       {/* Dynamic Image */}
                       <Image
-                        src={urlFor(item.image).url()} // Using dynamic image from the item object
+                        src={urlFor(item.image).url()|| "/food-1.png"} // Using dynamic image from the item object
                         alt={item.name}
                         width={93}
                         height={97}
