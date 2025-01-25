@@ -25,6 +25,7 @@ function Page() {
   const [discountCode, setDiscountCode] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
   const [finalAmount, setFinalAmount] = useState(0);
+  
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -32,7 +33,7 @@ function Page() {
       if (storedCart) {
         setCartData(JSON.parse(storedCart));
       } else {
-        setCartData([]); // Default to an empty array if no cart data exists
+        setCartData([]); 
       }
       if (storedCart) {
         const parsedCart = JSON.parse(storedCart) as CartItem[];
@@ -114,20 +115,19 @@ function Page() {
     const updatedCart = cartData.filter((item) => item.id !== id);
     setCartData(updatedCart);
     setQuantityData((prev) => {
-      const { [id]: _, ...rest } = prev; // Remove the quantity entry for the removed item
+      const { [id]: _, ...rest } = prev; 
       return rest;
     });
 
-    // Save updated cart to localStorage
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     if (updatedCart.length === 0) {
-      localStorage.removeItem("cart"); // Clear storage if cart is empty
-    }
+      localStorage.removeItem("cart"); 
+        }
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar  />
       <div className="bg-white">
         <Banner pageName="Shopping Cart" />
         <div className="text-black md:mx-[100px] my-[70px]">
@@ -141,7 +141,7 @@ function Page() {
                     <div className="grid grid-cols-2 my-3 gap-3">
                       {/* Dynamic Image */}
                       <Image
-                        src={urlFor(item.image).url()|| "/food-1.png"} // Using dynamic image from the item object
+                        src={item.image ? urlFor(item.image).url() : "/food-1.png"} // Using dynamic image from the item object
                         alt={item.name}
                         width={93}
                         height={97}

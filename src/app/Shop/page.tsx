@@ -81,6 +81,7 @@ function Page() {
     localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
   };
 
+
   return (
     <div className="bg-white">
       <Navbar />
@@ -145,10 +146,11 @@ function Page() {
               </div>
               {/* Add to Wishlist Button */}
               <button
-                className="mt-4 bg-[#FF9F0D] p-2 rounded-md"
+                className={`mt-4 ${wishlist.includes(item) ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#FF9F0D]'} p-2 rounded-md`}
                 onClick={() => addToWishlist(item)}
+                disabled={wishlist.includes(item)}
               >
-               {wishlist.includes(item) ? "Remove" : "Add To wishlist"}
+               {wishlist.includes(item) ? "Added"   : "Add To wishlist"}
               </button>
             </div>
           ))}

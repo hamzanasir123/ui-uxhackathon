@@ -37,7 +37,7 @@ function Navbar(props:any) {
           localStorage.setItem("cart", JSON.stringify([props.cartData]));
         }
       }
-    }, [props.cartData, props.removeCartData, props.cartItem, props.cartNumber, cartItem, cartNumber]);
+    }, [props.cartData, props.removeCartData, props.cartItem, props.cartNumber]);
   
     useEffect(() => {
       if (props.removeCartData) {
@@ -51,7 +51,7 @@ function Navbar(props:any) {
           localStorage.removeItem("cart");
         }
       }
-    }, [props.removeCartData, props.cartData, props.cartItem, props.cartNumber , cartItem , cartNumber]);
+    }, [props.removeCartData, props.cartData, props.cartItem, props.cartNumber]);
 
 
     const toggleNavbar = () => {

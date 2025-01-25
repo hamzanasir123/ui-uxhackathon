@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Loader from "../Loader/Loader";
 
 interface formProps {
   btnTitle: string;
@@ -17,6 +18,7 @@ function Form(props: formProps) {
     email: "",
   });
   const [btnText, setBtnText] = useState(btnTitle);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const router = useRouter();
 
   const handleFormValueChange = (evt: React.ChangeEvent<HTMLInputElement>) =>
@@ -36,7 +38,8 @@ function Form(props: formProps) {
       const result = await response.json();
       if (result?.message) {
         setBtnText("Success");
-        const redirectPath = isLogin ? "/Home" : "/";
+        setIsRedirecting(true);
+        const redirectPath = isLogin ? "/Home" : "/Home";
         router.push(redirectPath);
       }
     } catch (error) {
@@ -44,6 +47,14 @@ function Form(props: formProps) {
     } finally {
     }
   };
+
+  if (isRedirecting) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader/>
+        </div>
+    )
+  }
 
   return (
     <>
@@ -66,6 +77,7 @@ function Form(props: formProps) {
                     <input
                     onChange={handleFormValueChange}
                     type="text"
+                    required
                     name="username"
                     placeholder={"Enter Your Username"}
                     value={formValues.username}
@@ -85,6 +97,7 @@ function Form(props: formProps) {
                     onChange={handleFormValueChange}
                     type="email"
                     name="email"
+                    required
                     placeholder={"Enter Your Email"}
                     value={formValues.email}
                   className="w-full h-[44px] border-2 rounded px-12"
@@ -102,6 +115,7 @@ function Form(props: formProps) {
                   onChange={handleFormValueChange}
                   type="password"
                   name="password"
+                  required
                   placeholder={"Enter Your Password"}
                   value={formValues.password}
                   className="w-full h-[44px] border-2 rounded px-12"
@@ -116,7 +130,7 @@ function Form(props: formProps) {
               <button type="submit"
                 className="w-full text-center p-2 max-w-[360px] h-[44px] bg-[#FF9F0D] text-white rounded"
               >
-                {btnText}
+                {isRedirecting ?  "Redirecting..." : btnText}
               </button>
             </div>
           </div>

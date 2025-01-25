@@ -126,8 +126,8 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredData.length > 0 ? (
             filteredData.map((item: Product) => (
-              <Link key={item.id} href={`/productDetails/${item.id}`} >
-              <div className="border p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300 mb-4">
+              <div key={item.id} className="border p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300 mb-4">
+                <Link  href={`/productDetails/${item.id}`} >
               {/* Product Image */}
               <div className="relative w-full h-40 mb-4">
                 <Image
@@ -145,7 +145,7 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
                 <p className="text-lg md:text-xl font-semibold text-[#FF9F0D]">{item.price}$</p>
               </div>
               <p className="text-sm md:text-base mb-4">{item.description}</p>
-              
+              </Link>
               {/* Add/Remove Button */}
               {cartIds.includes(item.id) ? (
                 <button
@@ -165,7 +165,6 @@ const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
                 </button>
               )}
             </div>
-            </Link>
             ))
           ) : (
             <p>No items match your search.</p>

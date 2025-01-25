@@ -9,7 +9,7 @@ const PaymentSuccess = () => {
   useEffect(() => {
     // Redirect to the homepage after a delay (optional)
     const timer = setTimeout(() => {
-      router.push("/"); // Use the App Router's navigation function
+      router.push("/Home"); // Use the App Router's navigation function
     }, 5000); // Redirect after 5 seconds
 
     return () => clearTimeout(timer); // Cleanup the timer

@@ -36,7 +36,7 @@ export default function ProductDetails({ params }: { params: { id: string } }) {
   const [quantityData, setQuantityData] = useState<{ [key: number]: number }>(
       {}
     ); 
-    const [cartData, setCartData] = useState<CartItem[]>([]);
+    const [cartData, setCartData] = useState<CartItem[]>();
     const [removeCartData, setRemoveCartData] = useState<number | null>(null);
       const [cartStorage, setCartStorage] = useState<CartItem[]>([]);
       const [cartIds, setCartIds] = useState<number[]>([]);
@@ -77,6 +77,7 @@ export default function ProductDetails({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
+        <Loader/>
         </div>
     )
   }
@@ -84,19 +85,6 @@ export default function ProductDetails({ params }: { params: { id: string } }) {
   if (!product) {
     return <div>Product not found</div>;
   }
-
-  
-  const handleQuantityChange = (id: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
-    setQuantityData((prevQuantityData) => {
-      const updatedQuantityData = { ...prevQuantityData, [id]: newQuantity };
-      const updatedCart = cartData.map((item) =>
-        item.id === id ? { ...item, quantity: updatedQuantityData[id] } : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      return updatedQuantityData;
-    });
-  };
 
   const addToCart = (item: any) => {
     setCartData(item);
@@ -174,29 +162,6 @@ export default function ProductDetails({ params }: { params: { id: string } }) {
                 <p className="text-sm">22 Reviews</p>
               </div>
               <div className="flex gap-4 items-center mb-6">
-                <div className="grid grid-cols-3 border border-gray-400">
-                  <button
-                  onClick={() =>
-                    handleQuantityChange(
-                      product.id,
-                      (quantityData[product.id] || 1) - 1
-                    )
-                  }
-                  className="flex justify-center px-2 items-center border-r border-gray-400">
-                    -
-                  </button>
-                  <p className="flex justify-center items-center">{quantityData[product.id] || 1}</p>
-                  <button 
-                  onClick={() =>
-                    handleQuantityChange(
-                      product.id,
-                      (quantityData[product.id] || 1) + 1
-                    )
-                  }
-                  className="flex justify-center items-center border-l border-gray-400">
-                    +
-                  </button>
-                </div>
                 {cartIds.includes(product.id) ? (
                     <button
                     onClick={() => removeFromCart(product.id)}
