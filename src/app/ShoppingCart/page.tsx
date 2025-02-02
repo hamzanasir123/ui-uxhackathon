@@ -159,7 +159,7 @@ function Page() {
                     </div>
                   </div>
                   {/* Price Section */}
-                  <div>
+                  <div className="hidden md:block">
                     <p className="font-bold text-lg">Price</p>
                     <p className="my-6">${item.price}.00</p>
                   </div>
@@ -195,7 +195,7 @@ function Page() {
                     </div>
                   </div>
                   {/* Total Section */}
-                  <div className="hidden md:block">
+                  <div className="">
                     <p className="font-bold text-lg">Total</p>
                     <p className="my-6">
                       ${item.price * (quantityData[item.id] || 1)}.00

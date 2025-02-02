@@ -1,34 +1,5 @@
 {
   "users": [
-    {
-      "_id": "ht7eCKCflZ1mMbR",
-      "name": "",
-      "email": "",
-      "password": "$2a$11$p16gvClP1nfAvFIL8ysnn.o14m530ARXN/h7Ws28s2xZA1v0V5RFu"
-    },
-    {
-      "_id": "wYeFvqQ6sVDn8UZ",
-      "name": "",
-      "email": "",
-      "password": "$2a$11$nT0f6HzD59E7sqPLcI1QZuV7p9YHmStdkEj9qw/kv82t9GRWfWHOO"
-    },
-    {
-      "_id": "bJTILbmLE3OpZ4C",
-      "name": "",
-      "email": "",
-      "password": "$2a$11$Pxnvq1g5Z7jBQwYOn5NsleYLDriTjxlUTFaJfXl3Rcng0LfhCXSTa"
-    },
-    {
-      "_id": "09MtuIUSTSZrNya",
-      "name": "hamzanasir0200",
-      "email": "hk435981@gmail.com",
-      "password": "$2a$11$yTa9Out//pstzVi/o6MM5ersP.LIszWBV8R07mnBSPTF/cF9YFlkm"
-    },
-    {
-      "_id": "lQ7TuzLADldwMxc",
-      "name": "hamzanasir",
-      "email": "hk435981@gmail.com",
-      "password": "$2a$11$kfvUtqu5ysIQp328/oknbumNBpr91x76CBV42OgiDBau/bFAm9H2G"
-    }
+    
   ]
 }

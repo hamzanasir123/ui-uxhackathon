@@ -1,14 +1,24 @@
-import React from "react";
-import Form from "./Components/Form/Form";
+import React from 'react'
+import AboutUs from './Components/AboutUs/AboutUs'
+import FoodCategory from './Components/FoodCategory/FoodCategory'
+import WhyChooseUs from './Components/WhyChooseUs/WhyChooseUs'
+import Menu from './Components/Menu/Menu'
+import Chef from './Components/Chef/Chef'
+import Blog from './Components/Blog/Blog'
+import Hero from './Hero/Hero'
 
-
-export default function Home(): React.JSX.Element {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/auth/signup";
+function page() {
   return (
     <>
-      <div>
-        <Form btnTitle="SignUp" apiUrl={apiUrl}/>
-      </div>
+    <Hero/>
+      <AboutUs/>
+      <FoodCategory/>
+      <WhyChooseUs/>
+      <Menu/>
+      <Chef/>
+      <Blog/>
     </>
-  );
+  )
 }
+
+export default page

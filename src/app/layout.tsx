@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathName = usePathname();
-  const isPageMain = pathName === "/";
+  const isPageMain = pathName === "/signup" || pathName === "/login";
   return (
     <html lang="en">
       <head>

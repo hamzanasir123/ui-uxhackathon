@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Loader from "../Loader/Loader";
+import Link from "next/link";
 
 interface formProps {
   btnTitle: string;
@@ -38,8 +39,9 @@ function Form(props: formProps) {
       const result = await response.json();
       if (result?.message) {
         setBtnText("Success");
+        setBtnText(result?.message)
         setIsRedirecting(true);
-        const redirectPath = isLogin ? "/Home" : "/Home";
+        const redirectPath = "/CheckoutPage";
         router.push(redirectPath);
       }
     } catch (error) {
@@ -65,6 +67,7 @@ function Form(props: formProps) {
               {btnTitle}
             </p>
             <div className="flex flex-col gap-6 items-center px-4">
+            {!isLogin && (
               <div className="relative w-full">
                 <Image
                   src={"/User (1).png"}
@@ -73,7 +76,6 @@ function Form(props: formProps) {
                   width={24}
                   className="absolute left-4 top-3"
                 />
-                {!isLogin && (
                     <input
                     onChange={handleFormValueChange}
                     type="text"
@@ -83,8 +85,8 @@ function Form(props: formProps) {
                     value={formValues.username}
                     className="w-full h-[44px] border-2 rounded px-12"
                   />
-                )}
               </div>
+                )}
               <div className="relative w-full">
                 <Image
                   src={"/EnvelopeSimple.png"}
@@ -122,10 +124,15 @@ function Form(props: formProps) {
                 />
               </div>
             </div>
-            <div className="flex items-center gap-4 px-8 py-4">
-              <input type="checkbox" />
-              <p className="text-sm">Remember me?</p>
+            {isLogin ? (
+              <div className="flex items-center gap-4 px-8 py-4">
+              <Link href={"/signup"} className="text-sm font-bold hover:text-orange-500">SignUp</Link>
             </div>
+            ) : (
+              <div className="flex items-center gap-4 px-8 py-4">
+              <Link href={"/login"} className="text-sm font-bold hover:text-orange-500">SignIn</Link>
+            </div>
+            )}
             <div className="flex justify-center px-4 mb-6 ">
               <button type="submit"
                 className="w-full text-center p-2 max-w-[360px] h-[44px] bg-[#FF9F0D] text-white rounded"

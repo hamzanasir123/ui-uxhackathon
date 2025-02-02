@@ -1,39 +1,68 @@
-import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import { findUnique, generateUniqueID, writeDatabase } from "@/helpers";
+import { NextResponse, NextRequest } from "next/server";
+import { generateUniqueID, writeDatabase, findUnique } from "@/helpers";
 import { User } from "@/app/types/user";
+import bcryptjs from "bcryptjs";
+import { createClient } from "next-sanity";
+import { z } from "zod"
+
+export const signUpSchema = z.object({
+    username: z.string().min(3, { message: "Minimum 3 characters are required in a name" }),
+    email: z.string().email({ message: "Invalid Email" }),
+    password: z.string().min(6, { message: "Minimum 6 characters are required in possword" }),
+}).strict()
+
+
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  token: process.env.SANITY_TOKEN,
+  apiVersion: '2023-02-22',
+  useCdn: false
+})
+
+interface userEmails {
+  email: string
+}
 
 export const GET = () => {
-    return NextResponse.json({ message: "success" }, { status: 200 });
-  };
+  return NextResponse.json({ message: "success" }, { status: 200 });
+};
 
 export const POST = async (req: NextRequest) => {
-  try {
-    const { username, email, password } = await req.json();
-    const salt = await bcrypt.genSalt(11);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    if(findUnique(email)){
-        return NextResponse.json(
-            {message : "Email Must Be Unique"},
-            {status : 400}
-        );
+  const query = `
+    *[_type == "userData"] {
+      email
     }
-    const newUser : User = {
-        _id : generateUniqueID(),
-        name : username,
-        email : email,
-        password : hashedPassword,
-    };
-    writeDatabase(newUser);
+  `;
+  
+  const data = await req.json();
+  const schemaResponse = await signUpSchema.safeParseAsync(data);
 
-    return NextResponse.json(
-        {message : "User Created Successfully"},
-        {status : 201},
-    );
-} catch (error) {
-    return NextResponse.json(
-      { error: "An unexpected error occurred" },
-      { status: 500 }
-    );
+  if (!schemaResponse.success) {
+    const errorMessages = schemaResponse.error.errors.map(err => err.message);
+    return NextResponse.json({ error : errorMessages.join(", ") }, { status: 400 });
   }
+
+  const { username, email, password } = schemaResponse.data;
+
+  const hashedPassword = await bcryptjs.hash(password, 11);
+
+  // Check if email already exists in the database
+  const emailExists = await client.fetch(query).then((data: userEmails[]) => 
+    data.find((item: userEmails) => item.email === email)
+  );
+
+  if (emailExists) {
+    return NextResponse.json({  error : "Email already exists" }, { status: 400 });
+  }
+
+  // Create new user and store credentials
+  const response = await client.create({
+    _type: "userData",
+    username: username,
+    email: email,
+    password: hashedPassword,
+  });
+
+  return NextResponse.json({ message: "User successfully created", response: response }, { status: 200 });
 };
