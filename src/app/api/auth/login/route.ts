@@ -1,6 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import { cookies } from "next/headers";
-import { findUnique } from "@/helpers";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
