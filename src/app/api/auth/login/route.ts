@@ -44,7 +44,7 @@ export const POST = async (req: NextRequest) => {
 
     const token = await jwt.sign(
       {email: user.email },
-      process.env.SANITY_TOKEN!,
+      process.env.SANITY_API_TOKEN!,
       { expiresIn: "1d" }
     );
 
