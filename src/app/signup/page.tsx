@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { Form } from "../Components/Form";
 
 async function SignUpPage() {
