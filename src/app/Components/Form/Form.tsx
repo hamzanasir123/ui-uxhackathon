@@ -41,7 +41,7 @@ function Form(props: formProps) {
         setBtnText(result.error)
       }
       if (result?.message) {
-        setBtnText("Success");
+        // setBtnText("Success");
         setBtnText(result?.message)
         setIsRedirecting(true);
         const redirectPath = "/CheckoutPage";

@@ -35,11 +35,11 @@ export const POST = async (req: NextRequest) => {
     if (!schemaResponse.success) return NextResponse.json(schemaResponse.error);
 
     const user = sanityData.find((item: queryType) => item.email == data.email)
-    if(!user) return NextResponse.json({message: "Invalid Email"}, {status: 400})
+    if(!user) return NextResponse.json({error: "Invalid Email"}, {status: 400})
 
       const passwordComparison = await bcryptjs.compare(data.password, user?.password ? user.password : "")
 
-    if (!passwordComparison) return NextResponse.json({ message: "Invalid password" }, {status: 400})
+    if (!passwordComparison) return NextResponse.json({ error: "Invalid password" }, {status: 400})
 
 
     const token = await jwt.sign(
@@ -65,9 +65,8 @@ export const POST = async (req: NextRequest) => {
 
     return response;
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
-      { message: "Something went wrong" },
+      { error: "Something went wrong" },
       { status: 200 }
     );
   }
