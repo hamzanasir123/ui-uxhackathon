@@ -38,10 +38,12 @@ function Form(props: formProps) {
       });
       const result = await response.json();
       if(result.error){
-        setBtnText(result.error)
+        setBtnText(result.error);
+          setTimeout(() => {
+            setBtnText("Login");
+          }, 3000)
       }
       if (result?.message) {
-        // setBtnText("Success");
         setBtnText(result?.message)
         setIsRedirecting(true);
         const redirectPath = "/CheckoutPage";
