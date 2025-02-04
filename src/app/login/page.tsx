@@ -7,7 +7,7 @@ function LoginPage() {
       <Form
         btnTitle="login"
         isLogin={true}
-        apiUrl="http://localhost:3000/api/auth/login"
+        apiUrl="https://ui-uxhackathon.vercel.app/api/auth/login"
       />
   );
 }

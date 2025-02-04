@@ -6,7 +6,7 @@ async function SignUpPage() {
 
   return (
     <>
-      <Form btnTitle="Sign Up" apiUrl="http://localhost:3000/api/auth/signup"/>
+      <Form btnTitle="Sign Up" apiUrl="https://ui-uxhackathon.vercel.app/api/auth/signup"/>
     </>
   );
 }

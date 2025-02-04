@@ -1,6 +1,4 @@
 import { NextResponse, NextRequest } from "next/server";
-import { generateUniqueID, writeDatabase, findUnique } from "@/helpers";
-import { User } from "@/app/types/user";
 import bcryptjs from "bcryptjs";
 import { createClient } from "next-sanity";
 import { z } from "zod"
