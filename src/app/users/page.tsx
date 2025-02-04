@@ -13,7 +13,7 @@ import React from "react";
 import PageTitle from "../Components/Dashboard/PageTitle";
 import { DataTable } from "../Components/Dashboard/DataTable";
 
-type Props = {};
+// type Props = {};
 type Payment = {
   name: string;
   email: string;
@@ -147,7 +147,7 @@ const data: Payment[] = [
   }
 ];
 
-export default function UsersPage({}: Props) {
+export default function UsersPage() {
   return (
     <div className="flex flex-col gap-5  w-full bg-white text-black">
       <PageTitle title="Users" />

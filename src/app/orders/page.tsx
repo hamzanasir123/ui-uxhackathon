@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import PageTitle from "../Components/Dashboard/PageTitle";
 import { DataTable } from "../Components/Dashboard/DataTable";
 
-type Props = {};
+// type Props = {};
 type Payment = {
   order: string;
   status: string;
@@ -152,7 +152,7 @@ const data: Payment[] = [
   }
 ];
 
-export default function OrdersPage({}: Props) {
+export default function OrdersPage() {
   return (
     <div className="flex flex-col gap-5  w-full bg-white text-black">
       <PageTitle title="Orders" />

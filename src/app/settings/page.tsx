@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import PageTitle from "../Components/Dashboard/PageTitle";
 import { DataTable } from "../Components/Dashboard/DataTable";
 
-type Props = {};
+// type Props = {};
 
 interface Setting {
   category: string;
@@ -55,7 +55,7 @@ const data: Setting[] = [
   }
 ];
 
-export default function SettingsPage({}: Props) {
+export default function SettingsPage() {
   return (
     <div className="flex flex-col gap-5  w-full bg-white text-black">
       <PageTitle title="Settings" />
