@@ -37,6 +37,9 @@ function Form(props: formProps) {
         body: JSON.stringify(formValues),
       });
       const result = await response.json();
+      if(result.error){
+        setBtnText(result.error)
+      }
       if (result?.message) {
         setBtnText("Success");
         setBtnText(result?.message)
