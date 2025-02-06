@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import client from "../../../../client";
 import { urlFor } from "../../../../image";
+import MenuLoarder from "../MenuLoader/MenuLoarder";
 
 interface Product {
   name : string,
@@ -23,6 +24,7 @@ const greatVibes = Great_Vibes({
 function  Menu() {
 
   const [apiData, setApiData] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetching = async () => {
@@ -36,6 +38,8 @@ function  Menu() {
         setApiData(response);
       } catch (error) {
         console.error('Error fetching data:', error);
+      }finally {
+        setLoading(false); // Set loading to false when fetch is done
       }
     };
     fetching();
@@ -76,12 +80,37 @@ function  Menu() {
             alt="Food"
             height={362}
             width={366}
-            className="absolute p-4"
+            className="absolute p-4 "
           />
         </div>
 
         <div className="space-y-6">
-          {apiData.map((item, index) => (
+          { loading ? (
+            <>
+            <div className="gap-20 opacity-30">
+            <MenuLoarder/>
+            <br/>
+            <br/>
+            <MenuLoarder/>
+            </div>
+            <div className="hidden md:block">
+            <div className="flex gap-20 opacity-30 flex-nowrap">
+                <MenuLoarder/>
+                <MenuLoarder/>
+                <MenuLoarder/>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div className="flex gap-20 opacity-30 flex-nowrap">
+            <MenuLoarder/>
+            <MenuLoarder/>
+            <MenuLoarder/>
+        </div>
+        </div>
+        </>
+          ) : apiData.map((item, index) => (
             <Link key={index} href={"/Menu"}>
             <div className="grid grid-cols-[70px_1fr] my-5 items-center gap-4">
               <Image src={urlFor(item.image).url()} alt={item.name} height={69} width={70} className="rounded" />

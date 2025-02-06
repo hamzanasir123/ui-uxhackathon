@@ -35,7 +35,6 @@ function Menu() {
           name, description , price, id, image
         }`;
         const response = await client.fetch(query);
-        console.log("Fetched Data:", response); // Add logging to check data
         setApiData(response);
         setFilteredData(response);
       } catch (error) {
@@ -126,12 +125,22 @@ function Menu() {
         {/* Menu Items */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading ? (
+            <>
+            <div className="gap-4">
+            <CardLoader/>
+            <br/>
+            <br/>
+            <CardLoader/>
+            </div>
+            <div className="hidden md:block">
             <div className="flex gap-4">
                 <CardLoader/>
                 <CardLoader/>
                 <CardLoader/>
                 <CardLoader/>
             </div>
+            </div>
+            </>
           ) : filteredData.length > 0 ? (
             filteredData.map((item: Product) => (
               <div key={item.id} className="border p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300 mb-4">
