@@ -14,7 +14,7 @@ function AboutUs() {
       <div id="AboutUs" className="">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:p-8 lg:p-16">
           <div className="p-6">
-            <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px]`}>
+            <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce `}>
               About us
             </p>
             <p className="font-bold text-[32px] md:text-[48px]">
@@ -44,7 +44,7 @@ function AboutUs() {
             </div>
             <Link
               href={"/"}
-              className="rounded-[30px] bg-[#FF9F0D] text-white px-4 py-2 md:px-5 md:py-3"
+              className="rounded-[30px] bg-[#FF9F0D] text-black font-semibold px-4 py-2 md:px-5 md:py-3 animate-pulse hover:animate-none"
             >
               Read More
             </Link>

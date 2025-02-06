@@ -44,7 +44,7 @@ function  Menu() {
   return (
     <div className="my-20 px-4 lg:px-16">
       <div className="text-center mt-16">
-        <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px]`}>
+        <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce`}>
           Choose & pick
         </p>
         <p className="font-bold text-[36px] md:text-[48px]">

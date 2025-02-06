@@ -41,7 +41,7 @@ function Chef() {
   return (
     <>
       <div className="text-center">
-        <p className={`${greatVibes.className} text-[#FF9F0D] text-[25px]`}>
+        <p className={`${greatVibes.className} text-[#FF9F0D] text-[25px] animate-bounce`}>
           Chefs
         </p>
         <p className="font-bold md:text-[48px] text-[30px]">
@@ -55,13 +55,13 @@ function Chef() {
         <div>
           <Link
             href={"/OurChefs"}
-            className=" px-6 py-2 bg-transparent border-2 rounded-full border-[#FF9F0D] "
+            className=" px-6 py-2 bg-transparent border-2 rounded-full border-[#FF9F0D] animate-pulse hover:animate-none "
           >
             See More
           </Link>
         </div>
         <div className="md:text-left m-10 sm:m-16 lg:m-20 mt-10 sm:mt-16 lg:mt-20">
-  <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px] lg:text-[30px]`}>
+  <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px] lg:text-[30px] animate-bounce `}>
     Testimonials
   </p>
   <p className="font-bold text-[30px] sm:text-[48px]">What our client are saying</p>

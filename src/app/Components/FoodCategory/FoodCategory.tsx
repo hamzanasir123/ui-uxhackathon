@@ -11,7 +11,7 @@ function FoodCategory() {
   return (
     <>
       <div className="text-center p-6 lg:p-10">
-        <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px]`}>
+        <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce `}>
           Food Category
         </p>
         <p className="font-bold text-[32px] md:text-[48px]">

@@ -46,20 +46,20 @@ function Hero() {
             </div>
             <div className="col-span-10 lg:col-span-9 m-4 md:text-center lg:text-left">
               <p
-                className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px]`}
+                className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce`}
               >
                 Its Quick & Amusing!
               </p>
-              <p className="font-bold text-[30px] md:text-[50px] lg:text-[60px]">
+              <p className="font-bold text-[30px] md:text-[50px] lg:text-[60px] ">
                 <span className="text-[#FF9F0D]">Th</span>e Art of speed food
                 Quality
               </p>
-              <p className="my-4 mb-10 text-sm md:text-base lg:text-lg">
+              <p className="my-4 mb-10 text-sm md:text-base lg:text-lg ">
                 We Have Very Delicious Foods, Fast & Accurate Service And A Premium Quality.
               </p>
               <Link
                 href={"/Menu"}
-                className="rounded-[30px] bg-[#FF9F0D] text-white px-4 py-2 md:px-5 md:py-3"
+                className={`rounded-[30px] bg-[#FF9F0D] text-black font-semibold  px-4 py-2 md:px-5 md:py-3 animate-pulse hover:animate-none `}
               >
                 See Menu
               </Link>

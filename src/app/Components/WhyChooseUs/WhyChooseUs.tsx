@@ -37,7 +37,7 @@ function WhyChooseUs() {
                 </div>
             </div>
             <div className='md:w-[450px] w-[280px] md:ml-10'>
-            <p className={`${greatVibes.className}  text-[#FF9F0D] md:text-[25px]`}>Why Choose us</p>
+            <p className={`${greatVibes.className}  text-[#FF9F0D] md:text-[25px] animate-bounce `}>Why Choose us</p>
                     <p className=' font-bold md:text-[48px] text-[30px] w-[300px] md:w-auto '><span className='text-[#FF9F0D]'>Ex</span>tra ordinary taste
                     And Experienced </p>
                     <p className=' my-4 mb-10 text-xs md:text-base w-[280px] md:w-auto'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna, vitae feugiat pretium donec id elementum. Ultrices mattis sed vitae mus risus. Lacus nisi, et ac dapibus sit eu velit in consequat.</p>

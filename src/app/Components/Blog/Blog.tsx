@@ -51,7 +51,7 @@ function Blog() {
         </div>
 
         <div className="text-center mt-16 sm:mt-20">
-          <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px]`}>
+          <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px] animate-bounce`}>
             Blog Post
           </p>
           <p className="font-bold text-[30px] sm:text-[48px]">
