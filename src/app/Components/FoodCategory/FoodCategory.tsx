@@ -1,17 +1,20 @@
 import React from "react";
-import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
 
-const greatVibes = Great_Vibes({
+
+import { Dancing_Script } from "next/font/google";
+
+const dancingScript = Dancing_Script({
   subsets: ["latin"],
   weight: "400",
 });
+
 
 function FoodCategory() {
   return (
     <>
       <div className="text-center p-6 lg:p-10">
-        <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce `}>
+        <p className={`${dancingScript.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce `}>
           Food Category
         </p>
         <p className="font-bold text-[32px] md:text-[48px]">

@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import { Great_Vibes } from "next/font/google";
 import Link from "next/link";
 import Header from "../Components/Header/Header";
 
-const greatVibes = Great_Vibes({
+import { Dancing_Script } from "next/font/google";
+
+const dancingScript = Dancing_Script({
   subsets: ["latin"],
   weight: "400",
 });
@@ -46,12 +47,12 @@ function Hero() {
             </div>
             <div className="col-span-10 lg:col-span-9 m-4 md:text-center lg:text-left">
               <p
-                className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce`}
+                className={` ${dancingScript.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce`}
               >
                 Its Quick & Amusing!
               </p>
               <p className="font-bold text-[30px] md:text-[50px] lg:text-[60px] ">
-                <span className="text-[#FF9F0D]">Th</span>e Art of speed food
+                <span className="text-[#FF9F0D]">Th</span>e Art Of Speed Food
                 Quality
               </p>
               <p className="my-4 mb-10 text-sm md:text-base lg:text-lg ">

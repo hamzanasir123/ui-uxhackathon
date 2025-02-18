@@ -8,10 +8,18 @@ type BannerProps = {
 
 function Banner({ pageName }: BannerProps): React.JSX.Element {
   return (
-    <div className="relative h-[250px] md:h-[300px] lg:h-[350px] overflow-hidden">
-      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-      <div className="relative flex flex-col items-center justify-center h-full text-white text-center">
+    <div className="relative h-[250px] md:h-[300px] lg:h-[350px] overflow-hidden flex items-center justify-center text-center text-white">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/bgimg4.png')" }} // Change to your image path
+      ></div>
 
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
           {pageName}
         </h1>

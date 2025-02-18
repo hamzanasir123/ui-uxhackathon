@@ -1,12 +1,16 @@
 import React from "react";
-import { Great_Vibes } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 
-const greatVibes = Great_Vibes({
+
+import { Dancing_Script } from "next/font/google";
+
+const dancingScript = Dancing_Script({
   subsets: ["latin"],
   weight: "400",
 });
+
+
 
 function Blog() {
   return (
@@ -17,7 +21,7 @@ function Blog() {
           <div className="grid grid-cols-1 sm:grid-cols-2">
             <div></div>
             <div className="relative text-right p-6 sm:p-10">
-              <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px]`}>
+              <p className={`${dancingScript.className} text-[#FF9F0D] text-[20px] sm:text-[25px]`}>
                 Restaurant Active Process
               </p>
               <p className="font-bold text-[28px] sm:text-[38px]">
@@ -51,7 +55,7 @@ function Blog() {
         </div>
 
         <div className="text-center mt-16 sm:mt-20">
-          <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px] animate-bounce`}>
+          <p className={`${dancingScript.className} text-[#FF9F0D] text-[20px] sm:text-[25px] animate-bounce`}>
             Blog Post
           </p>
           <p className="font-bold text-[30px] sm:text-[48px]">

@@ -1,12 +1,13 @@
 import React from "react";
-import { Great_Vibes } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import { Dancing_Script } from "next/font/google";
 
-const greatVibes = Great_Vibes({
+const dancingScript = Dancing_Script({
   subsets: ["latin"],
   weight: "400",
 });
+
 
 function AboutUs() {
   return (
@@ -14,7 +15,7 @@ function AboutUs() {
       <div id="AboutUs" className="">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:p-8 lg:p-16">
           <div className="p-6">
-            <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce `}>
+            <p className={`${dancingScript.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce `}>
               About us
             </p>
             <p className="font-bold text-[32px] md:text-[48px]">

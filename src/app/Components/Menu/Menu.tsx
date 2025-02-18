@@ -1,11 +1,17 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import client from "../../../../client";
 import { urlFor } from "../../../../image";
 import MenuLoarder from "../MenuLoader/MenuLoarder";
+
+import { Dancing_Script } from "next/font/google";
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 interface Product {
   name : string,
@@ -16,10 +22,6 @@ interface Product {
   available : boolean,
 }
 
-const greatVibes = Great_Vibes({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 function  Menu() {
 
@@ -48,7 +50,7 @@ function  Menu() {
   return (
     <div className="my-20 px-4 lg:px-16">
       <div className="text-center mt-16">
-        <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce`}>
+        <p className={`${dancingScript.className} text-[#FF9F0D] text-[20px] md:text-[25px] animate-bounce`}>
           Choose & pick
         </p>
         <p className="font-bold text-[36px] md:text-[48px]">

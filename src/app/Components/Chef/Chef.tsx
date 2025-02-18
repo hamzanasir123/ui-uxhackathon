@@ -1,10 +1,18 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { Great_Vibes } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import client from "../../../../client";
 import { urlFor } from "../../../../image";
+
+
+import { Dancing_Script } from "next/font/google";
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: "400",
+});
+
 
 interface Chef {
   name : string,
@@ -17,10 +25,6 @@ interface Chef {
   specialty : string,
 }
 
-const greatVibes = Great_Vibes({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 function Chef() {
   
@@ -41,7 +45,7 @@ function Chef() {
   return (
     <>
       <div className="text-center">
-        <p className={`${greatVibes.className} text-[#FF9F0D] text-[25px] animate-bounce`}>
+        <p className={`${dancingScript.className} text-[#FF9F0D] text-[25px] animate-bounce`}>
           Chefs
         </p>
         <p className="font-bold md:text-[48px] text-[30px]">
@@ -61,7 +65,7 @@ function Chef() {
           </Link>
         </div>
         <div className="md:text-left m-10 sm:m-16 lg:m-20 mt-10 sm:mt-16 lg:mt-20">
-  <p className={`${greatVibes.className} text-[#FF9F0D] text-[20px] sm:text-[25px] lg:text-[30px] animate-bounce `}>
+  <p className={`${dancingScript.className} text-[#FF9F0D] text-[20px] sm:text-[25px] lg:text-[30px] animate-bounce `}>
     Testimonials
   </p>
   <p className="font-bold text-[30px] sm:text-[48px]">What our client are saying</p>
